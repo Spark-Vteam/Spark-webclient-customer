@@ -1,0 +1,15 @@
+.heading {
+    margin-top: 45px;
+    width: 50%;
+    left: 50%;
+    position: absolute;
+}
+
+.heading-text {
+    width: 70%;
+}
+
+.head-text-sub {
+    font-size: 18px;
+    font-weight: 200;
+}
