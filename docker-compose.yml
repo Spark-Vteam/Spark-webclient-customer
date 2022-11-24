@@ -4,7 +4,13 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
+        container_name: webclient-customer
+        image: webclient-customer:1.0
         restart: always
+        volumes:
+             - ./src:/app/src 
+        environment:
+            - CHOKIDAR_USEPOLLING=true
         ports:
             - 3000:3000
         expose:
