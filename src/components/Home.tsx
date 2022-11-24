@@ -1,16 +1,16 @@
-import React from "react";
+import React from 'react';
 // importing Link from react-router-dom to navigate to
-import { Link } from "react-router-dom";
-import cell from "../img/cell.png";
-import Logo from "../img/Logo.png";
-import Spark from "../img/Spark-heading.png";
+import { Link } from 'react-router-dom';
+import Cell from '../img/cell.png'
+import Logo from '../img/Logo.png';
+import Spark from '../img/Spark-heading.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
 const Home = () => {
   return (
     <div className="App">
-      <img src={cell} className="bg-layer" alt="cellphone" />
+      <img src={Cell} className="bg-layer" alt="cellphone" />
       <div className="topnav">
         <img src={Logo} width="50px" alt="logo" />
         <div className="topnav-right">
