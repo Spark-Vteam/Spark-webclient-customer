@@ -2,23 +2,16 @@ import React from 'react';
 // importing Link from react-router-dom to navigate to
 import { Link } from 'react-router-dom';
 import Cell from '../img/cell.png';
-import Logo from '../img/Logo.png';
 import Spark from '../img/Spark-heading.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import Navbar from './Navbar';
 
 const Home = () => {
   return (
     <div className='App'>
       <img src={Cell} className='bg-layer' alt='cellphone' />
-      <div className='topnav'>
-        <img src={Logo} width='50px' alt='logo' />
-        <div className='topnav-right'>
-          <Link to='/'> Home</Link>
-          <Link to='/about'> About</Link>
-          <Link to='/policy'> Policy</Link>
-        </div>
-      </div>
+      <Navbar />
       <div className='heading'>
         <img src={Spark} className='heading-text' alt='Spark heading' />
         <h3 className='head-text-sub'>

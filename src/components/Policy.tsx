@@ -1,16 +1,9 @@
 import React from 'react';
 // importing Link from react-router-dom to navigate to
-import { Link } from 'react-router-dom';
+import Navbar from './Navbar';
 
 const Policy = () => {
-  return (
-    <div className='topnav-right'>
-      <Link to='/'> Home</Link>
-      <Link to='/about'> About</Link>
-      <Link to='/policy'> Policy</Link>
-      <p>Policy</p>
-    </div>
-  );
+  return <Navbar />;
 };
 
 export default Policy;
