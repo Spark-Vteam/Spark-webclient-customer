@@ -21,7 +21,7 @@ const Home = () => {
           <Link to='/login' className='btn margin-top'>
             Login with GitHub <FontAwesomeIcon icon={faGithub} />
           </Link>
-          {/* <a className="btn" href={`https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${GITHUB_REDRIRECT}?path=${PATH}&scope=user:email?callback=http://localhost:3000!/success/`}>Login with Github</a> */}
+          <a className="btn" href={`https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${GITHUB_REDRIRECT}?path=${PATH}&scope=user:email?callback=http://localhost:3000!/success/`}>Login with Github</a>
         </div>
       </div>
     </div>
