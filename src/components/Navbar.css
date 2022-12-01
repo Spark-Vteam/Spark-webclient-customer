@@ -8,13 +8,21 @@
 .topnav-right {
   float: right;
   padding: 14px 16px;
-  font-size: 24px;
+  font-size: 18px;
 }
 
 .topnav-right a {
-  color: #000000;
+  color: #000;
   text-decoration: none;
   text-align: center;
   padding: 14px 16px;
   font-weight: bolder;
+}
+
+.color-black {
+  color: black;
+}
+
+.login-link a {
+  color: #fff;
 }

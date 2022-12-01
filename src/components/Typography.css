@@ -6,10 +6,15 @@
 }
 
 .heading-text {
-  width: 70%;
+  width: 90%;
 }
 
 .head-text-sub {
   font-size: 18px;
   font-weight: 200;
 }
+
+a {
+    color: #fff;
+}
+
