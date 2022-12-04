@@ -6,7 +6,7 @@ const authModel = {
       .get('http://localhost:4000/get-cookie', {
         withCredentials: true,
         headers: {
-          'content-type': 'application/json',
+          'content-type': 'application/json'
         },
       })
       .then((res: any) => res.data);
