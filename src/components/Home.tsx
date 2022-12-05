@@ -57,7 +57,7 @@ const Home = ({ logout, userData }: any) => {
           <NavbarMin userData={userData} logout={logout} />
           <div className='home-container'>
             <h2>Welcome {localStorage.getItem('user')}!</h2>
-            <p>Continue to side by adding your information:</p>
+            <p>Continue to site by adding your information:</p>
             <form onSubmit={handleSubmit}>
               <div>
                 <input
