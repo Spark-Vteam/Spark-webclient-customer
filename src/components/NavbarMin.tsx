@@ -13,10 +13,9 @@ const Navbar = ({ userData, logout }: any) => {
             logout();
           }}
         >
-          Log out
+          <a color="#fff" href='http://localhost:3000/'>Log out</a>
         </button>
-        <Link to='/'> Overview</Link>
-        <Link to='/policy'> Policy</Link>
+
         <img
           className='profile-img'
           title='My account'
