@@ -44,7 +44,7 @@ function App() {
       })
       .then((data) => {
         // UNDEFINED
-        console.log('Access_token: ', data.access_token);
+        console.log('Access_token: ', data);
         
         if (data.access_token) {
           localStorage.setItem('accessToken', data.access_token);
@@ -75,7 +75,6 @@ function App() {
         return response.json();
       })
       .then((data) => {
-        console.log('DATA:', data);
         setUserData(data);
         localStorage.setItem('user', data.login);
         localStorage.setItem('avatar', data.avatar_url);
