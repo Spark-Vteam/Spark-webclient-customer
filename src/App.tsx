@@ -12,12 +12,12 @@ import About from './components/About';
 import Policy from './components/Policy';
 import Footer from './components/Footer';
 import { useState, useEffect } from 'react';
-import Navbar from './components/Navbar';
+// import Navbar from './components/Navbar';
 import NavbarStart from './components/NavbarStart';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 const CLIENT_ID = 'b413f1d7c7497d7b8e6a';
 
@@ -27,15 +27,21 @@ function App() {
     login: '',
     email: '',
     name: '',
-    avatar_url: '',
+    avatarUrl: '',
     id: '',
   });
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   async function getAccessToken(codeParam: string | null) {
+    console.log('App.tsx: ', codeParam);
+
     await fetch('http://localhost:4000/getAccessToken?code=' + codeParam, {
       method: 'GET',
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'text/plain'
+    },
     })
       .then((response) => {
         return response.json();
@@ -52,7 +58,7 @@ function App() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const codeParam = urlParams.get('code');
-    console.log(codeParam);
+    console.log('useEffect App.tsx', codeParam);
 
     if (codeParam && localStorage.getItem('accessToken') === null) {
       getAccessToken(codeParam);
@@ -72,7 +78,7 @@ function App() {
       .then((data) => {
         setUserData(data);
         localStorage.setItem('user', data.login);
-        localStorage.setItem('avatar', data.avatar_url);
+        localStorage.setItem('avatar', data.avatarUrl);
       });
   }
 
