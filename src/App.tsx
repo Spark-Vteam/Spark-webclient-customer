@@ -27,7 +27,7 @@ function App() {
     login: '',
     email: '',
     name: '',
-    avatarUrl: '',
+    avatar_url: '',
     id: '',
   });
 
@@ -38,15 +38,14 @@ function App() {
 
     await fetch('http://localhost:4000/getAccessToken?code=' + codeParam, {
       method: 'GET',
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'text/plain'
-    },
     })
       .then((response) => {
         return response.json();
       })
       .then((data) => {
+        // UNDEFINED
+        console.log('Access_token: ', data.access_token);
+        
         if (data.access_token) {
           localStorage.setItem('accessToken', data.access_token);
           setRerender(!rerender);
@@ -76,9 +75,10 @@ function App() {
         return response.json();
       })
       .then((data) => {
+        console.log('DATA:', data);
         setUserData(data);
         localStorage.setItem('user', data.login);
-        localStorage.setItem('avatar', data.avatarUrl);
+        localStorage.setItem('avatar', data.avatar_url);
       });
   }
 
