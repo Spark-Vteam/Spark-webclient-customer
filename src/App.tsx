@@ -36,7 +36,7 @@ function App() {
   async function getAccessToken(codeParam: string | null) {
     console.log('App.tsx: ', codeParam);
 
-    await fetch('http://localhost:4000/getAccessToken?code=' + codeParam, {
+    await fetch('http://localhost:4000/auth/getAccessToken?code=' + codeParam, {
       method: 'GET',
     })
       .then((response) => {
@@ -45,7 +45,7 @@ function App() {
       .then((data) => {
         // UNDEFINED
         console.log('Access_token: ', data);
-        
+
         if (data.access_token) {
           localStorage.setItem('accessToken', data.access_token);
           setRerender(!rerender);
@@ -65,7 +65,7 @@ function App() {
   }, []);
 
   async function getUserData() {
-    await fetch('http://localhost:4000/getUserData', {
+    await fetch('http://localhost:4000/auth/getUserData', {
       method: 'GET',
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
