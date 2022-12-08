@@ -12,7 +12,7 @@ import About from './components/About';
 import Policy from './components/Policy';
 import Footer from './components/Footer';
 import { useState, useEffect } from 'react';
-import Navbar from './components/Navbar';
+// import Navbar from './components/Navbar';
 import NavbarStart from './components/NavbarStart';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
@@ -34,7 +34,7 @@ function App() {
   const navigate = useNavigate();
 
   async function getAccessToken(codeParam: string | null) {
-    await fetch('http://localhost:4000/getAccessToken?code=' + codeParam, {
+    await fetch('http://localhost:4000/auth/getAccessToken?code=' + codeParam, {
       method: 'GET',
     })
       .then((response) => {
@@ -60,7 +60,7 @@ function App() {
   }, []);
 
   async function getUserData() {
-    await fetch('http://localhost:4000/getUserData', {
+    await fetch('http://localhost:4000/auth/getUserData', {
       method: 'GET',
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
