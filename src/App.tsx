@@ -102,7 +102,14 @@ function App() {
             />
             <Route
               path='/history'
-              element={<History userData={userData} logout={logout} singleUser={singleUser} />}
+              element={
+                <History
+                  userData={userData}
+                  logout={logout}
+                  setSingleUser={setSingleUser}
+                  singleUser={singleUser}
+                />
+              }
             />
             <Route
               path='/overview'

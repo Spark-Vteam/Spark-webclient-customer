@@ -1,9 +1,6 @@
-// importing Link from react-router-dom to navigate to
-// import Navbar from './Navbar';
 import NavbarMin from './NavbarMin';
 import { useState, useEffect } from 'react';
 import userModel from '../models/userModels';
-// import Overview from './Overview';
 import { useNavigate, Navigate } from 'react-router-dom';
 
 const Home = ({ userData, logout, singleUser, setSingleUser }: any) => {
@@ -13,7 +10,6 @@ const Home = ({ userData, logout, singleUser, setSingleUser }: any) => {
   const [phone, setPhone] = useState('');
   const [users, setUsers] = useState([]);
   const [password, setPassword] = useState('');
-  // const [singleUser, setSingleUser] = useState([]);
   const navigate = useNavigate();
 
   async function handleSubmit(event: any) {
@@ -27,8 +23,28 @@ const Home = ({ userData, logout, singleUser, setSingleUser }: any) => {
       password: password,
       oauth: String(userData.id),
     });
+    await fetchUsers();
+    // HUR SKA JAG KUNNA HÄMTA ANVÄDNAREN FRÅN DATABASEN FÖR ATT FORTFARANDE VARA INLOGGAD?
+    // DENNA DEL MÅSTE ÄNDRAS SÅ JAG INTE SKICKAR ONÖDIGT MPNGA REQUESTS
 
-    navigate('Overview');
+    /** @type {Array} filter bikes depending on status */
+    // OBS DUBBBELANVÄND KOD, ÄNDRA!!!!
+    users.filter(async (user: any) => {
+      console.log(userData.id, user.Oauth);
+      if (user.Oauth === String(userData.id)) {
+        console.log(user.Oauth);
+        const fetchUser = await userModel.getSingleUser(user.id);
+        setSingleUser(fetchUser);
+        console.log('i funktionen', singleUser);
+        navigate('Overview');
+      }
+    });
+    console.log(singleUser);
+
+    if (singleUser.length !== 0) {
+      navigate('Overview');
+    }
+    // navigate('Overview');
   }
 
   /**
@@ -49,6 +65,7 @@ const Home = ({ userData, logout, singleUser, setSingleUser }: any) => {
   /** @type {Array} filter bikes depending on status */
   users.filter(async (user: any) => {
     if (user.Oauth === String(userData.id)) {
+      console.log(user.Oauth);
       const fetchUser = await userModel.getSingleUser(user.id);
       setSingleUser(fetchUser);
     }
