@@ -18,6 +18,18 @@ body {
   text-align: center;
 }
 
+.App2 {
+  background-color: rgba(255, 255, 255, 0.823);
+  height: 100vh;
+  padding: 1em;
+}
+
+.App-container {
+  width: 50%;
+  margin: 0 auto;
+  text-align: left;
+}
+
 .bg-layer {
   width: 50%;
   left: 50%;

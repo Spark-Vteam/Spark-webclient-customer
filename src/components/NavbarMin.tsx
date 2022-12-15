@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import Logo from '../img/Logo.png';
 
-const Navbar = ({ userData, logout }: any) => {
+const Navbar = ({ logout }: any) => {
   return (
     <div className='topnav'>
       <img src={Logo} width='50px' alt='logo' />
@@ -16,14 +16,14 @@ const Navbar = ({ userData, logout }: any) => {
           <a color="#fff" href='http://localhost:3000/'>Log out</a>
         </button>
 
-        <img
+        {/* <img
           className='profile-img'
           title='My account'
           width='50px'
           height='50px'
           src={userData.avatar_url}
           alt='GitHub profile picture'
-        ></img>
+        ></img> */}
       </div>
     </div>
   );
