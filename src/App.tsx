@@ -8,16 +8,11 @@ import Cell from './img/cell.png';
 import Spark from './img/Spark-heading.png';
 
 import Home from './components/Home';
-import About from './components/About';
-import Policy from './components/Policy';
 import Footer from './components/Footer';
 import { useState, useEffect } from 'react';
-// import Navbar from './components/Navbar';
 import NavbarStart from './components/NavbarStart';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-
-import { Routes, Route, useNavigate } from 'react-router-dom';
 
 const CLIENT_ID = 'b413f1d7c7497d7b8e6a';
 
@@ -30,8 +25,7 @@ function App() {
     avatar_url: '',
     id: '',
   });
-
-  const navigate = useNavigate();
+  const [, setValue] = useState('');
 
   async function getAccessToken(codeParam: string | null) {
     await fetch('http://localhost:4000/auth/getAccessToken?code=' + codeParam, {
@@ -52,8 +46,6 @@ function App() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const codeParam = urlParams.get('code');
-    console.log(codeParam);
-
     if (codeParam && localStorage.getItem('accessToken') === null) {
       getAccessToken(codeParam);
     }
@@ -76,10 +68,11 @@ function App() {
       });
   }
 
-  function login() {
+  function login(event: any) {
     window.location.assign(
       `https://github.com/login/oauth/authorize?scope=user&client_id=${CLIENT_ID}`,
     );
+    setValue(event.target.value);
   }
 
   function logout() {
@@ -89,13 +82,7 @@ function App() {
   return (
     <div className='App'>
       {localStorage.getItem('accessToken') ? (
-        <>
-          <Routes>
-            <Route path='/' element={<Home userData={userData} logout={logout} />} />
-            <Route path='/about' element={<About />} />
-            <Route path='/policy' element={<Policy />} />
-          </Routes>
-        </>
+        <Home userData={userData} logout={logout}></Home>
       ) : (
         <>
           <img src={Cell} className='bg-layer' alt='cellphone' />
@@ -106,9 +93,18 @@ function App() {
               <i>Green. Smart. Effective. This is how we do it.</i>
             </h3>
             <div>
-              <button className='btn-login btn' onClick={login}>
-                Login with Github <FontAwesomeIcon icon={faGithub} />
+              <button className='btn-login btn' value='register' onClick={login}>
+                Register with GitHub <FontAwesomeIcon icon={faGithub} />
               </button>
+              <p>
+                Already a member?{' '}
+                <button className='login-btn' value='login' onClick={login}>
+                  Login
+                </button>
+              </p>
+              {/* <button className='btn-login btn' onClick={login}>
+                Login with Github <FontAwesomeIcon icon={faGithub} />
+              </button> */}
             </div>
           </div>
         </>

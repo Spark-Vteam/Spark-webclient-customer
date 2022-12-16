@@ -18,6 +18,18 @@ body {
   text-align: center;
 }
 
+.App2 {
+  background-color: rgba(255, 255, 255, 0.823);
+  height: 100vh;
+  padding: 1em;
+}
+
+.App-container {
+  width: 50%;
+  margin: 0 auto;
+  text-align: left;
+}
+
 .bg-layer {
   width: 50%;
   left: 50%;
@@ -50,4 +62,20 @@ body {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   padding: 2em;
   border-radius: 10px;
+}
+
+.info-container {
+  margin: auto;
+  width: 30%;
+  color: rgb(0, 0, 0);
+  height: 30vh;
+  padding: 1em;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.big {
+  font-size: 24px;
+  color: #fe4600;
 }
