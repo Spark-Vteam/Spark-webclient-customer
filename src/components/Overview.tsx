@@ -13,14 +13,15 @@ const Overview = ({ userData, logout, singleUser }: any) => {
   } else {
     message = 'Good evening';
   }
-  
 
   console.log(singleUser);
   return (
     <div className='App'>
       <Navbar userData={userData} logout={logout} />
       <div className='App2'>
-        <h2>{message}!</h2>
+        <h2>
+          {message}!
+        </h2>
       </div>
     </div>
   );

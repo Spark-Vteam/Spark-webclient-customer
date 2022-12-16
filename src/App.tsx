@@ -8,12 +8,8 @@ import Cell from './img/cell.png';
 import Spark from './img/Spark-heading.png';
 
 import Home from './components/Home';
-import History from './components/History';
-import Overview from './components/Overview';
-import Payment from './components/Payment';
 import Footer from './components/Footer';
 import { useState, useEffect } from 'react';
-// import Navbar from './components/Navbar';
 import NavbarStart from './components/NavbarStart';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
@@ -31,7 +27,7 @@ function App() {
     avatar_url: '',
     id: '',
   });
-  const [singleUser, setSingleUser] = useState([]);
+  const [fetchUser, setFetchUser] = useState([]);
 
   async function getAccessToken(codeParam: string | null) {
     await fetch('http://localhost:4000/auth/getAccessToken?code=' + codeParam, {
@@ -87,40 +83,12 @@ function App() {
   return (
     <div className='App'>
       {localStorage.getItem('accessToken') ? (
-        <>
-          <Routes>
-            <Route
-              path='/'
-              element={
-                <Home
-                  userData={userData}
-                  logout={logout}
-                  singleUser={singleUser}
-                  setSingleUser={setSingleUser}
-                />
-              }
-            />
-            <Route
-              path='/history'
-              element={
-                <History
-                  userData={userData}
-                  logout={logout}
-                  setSingleUser={setSingleUser}
-                  singleUser={singleUser}
-                />
-              }
-            />
-            <Route
-              path='/overview'
-              element={<Overview userData={userData} logout={logout} singleUser={singleUser} />}
-            />
-            <Route
-              path='/payment'
-              element={<Payment userData={userData} logout={logout} singleUser={singleUser} />}
-            />
-          </Routes>
-        </>
+        <Home
+          userData={userData}
+          logout={logout}
+          fetchUser={fetchUser}
+          setFetchUser={setFetchUser}
+        ></Home>
       ) : (
         <>
           <img src={Cell} className='bg-layer' alt='cellphone' />

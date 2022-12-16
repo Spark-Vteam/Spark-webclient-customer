@@ -1,16 +1,17 @@
 import NavbarMin from './NavbarMin';
 import { useState, useEffect } from 'react';
 import userModel from '../models/userModels';
-import { useNavigate, Navigate } from 'react-router-dom';
+import LoggedIn from './LoggedIn';
 
-const Home = ({ userData, logout, singleUser, setSingleUser }: any) => {
+const Home = ({ userData, logout }: any) => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [lastname, setLastname] = useState('');
   const [phone, setPhone] = useState('');
   const [users, setUsers] = useState([]);
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
+  const [isActive, setIsActive] = useState(false);
+  const [singleUser, setSingleUser] = useState([]);
 
   async function handleSubmit(event: any) {
     event.preventDefault();
@@ -23,28 +24,10 @@ const Home = ({ userData, logout, singleUser, setSingleUser }: any) => {
       password: password,
       oauth: String(userData.id),
     });
-    await fetchUsers();
-    // HUR SKA JAG KUNNA HÄMTA ANVÄDNAREN FRÅN DATABASEN FÖR ATT FORTFARANDE VARA INLOGGAD?
-    // DENNA DEL MÅSTE ÄNDRAS SÅ JAG INTE SKICKAR ONÖDIGT MPNGA REQUESTS
 
-    /** @type {Array} filter bikes depending on status */
-    // OBS DUBBBELANVÄND KOD, ÄNDRA!!!!
-    users.filter(async (user: any) => {
-      console.log(userData.id, user.Oauth);
-      if (user.Oauth === String(userData.id)) {
-        console.log(user.Oauth);
-        const fetchUser = await userModel.getSingleUser(user.id);
-        setSingleUser(fetchUser);
-        console.log('i funktionen', singleUser);
-        navigate('Overview');
-      }
-    });
-    console.log(singleUser);
+    // HÄR MÅSTE JAG FÅ TAG PÅ ID
 
-    if (singleUser.length !== 0) {
-      navigate('Overview');
-    }
-    // navigate('Overview');
+    setIsActive(true);
   }
 
   /**
@@ -64,23 +47,20 @@ const Home = ({ userData, logout, singleUser, setSingleUser }: any) => {
 
   /** @type {Array} filter bikes depending on status */
   users.filter(async (user: any) => {
-    if (user.Oauth === String(userData.id)) {
-      console.log(user.Oauth);
+    if (user.Oauth === String(userData.id) && isActive === false) {
+      console.log('inne', user.Oauth);
       const fetchUser = await userModel.getSingleUser(user.id);
+      localStorage.setItem('id', user.id);
       setSingleUser(fetchUser);
+      setIsActive(true);
     }
   });
 
-  // /** @type {Array} filter bikes depending on status */
-  // const filteredUser: Array<any> = users.filter((user: any) =>
-  //   console.log(user.Oauth === String(userData.id)),
-  // );
-
-  // console.log(singleUser);
+  console.log(isActive);
 
   return (
     <div className='App'>
-      {singleUser.length === 0 ? (
+      {isActive === false ? (
         <>
           <NavbarMin userData={userData} logout={logout} />
           <div className='home-container'>
@@ -144,7 +124,12 @@ const Home = ({ userData, logout, singleUser, setSingleUser }: any) => {
           </div>
         </>
       ) : (
-        <Navigate to='/overview' replace={true} />
+        <LoggedIn
+          userData={userData}
+          logout={logout}
+          singleUser={singleUser}
+          gitHubId={userData.id}
+        />
       )}
     </div>
   );
