@@ -1,4 +1,3 @@
-import Navbar from './Navbar';
 import History from './History';
 import Overview from './Overview';
 import Payment from './Payment';
@@ -7,8 +6,8 @@ import { useState, useEffect } from 'react';
 import userModel from '../models/userModels';
 // importing Link from react-router-dom to navigate to
 
-const LoggedIn = ({ userData, logout, singleUser, gitHubId }: any) => {
-  const [users, setUsers] = useState([]);
+const LoggedIn = ({ userData, logout, singleUser }: any) => {
+  const [, setUsers] = useState([]);
 
   /**
    * fetch users from API
@@ -25,7 +24,6 @@ const LoggedIn = ({ userData, logout, singleUser, gitHubId }: any) => {
     })();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  console.log('I logged in', users, singleUser, gitHubId);
   return (
     <div className='App'>
       <>

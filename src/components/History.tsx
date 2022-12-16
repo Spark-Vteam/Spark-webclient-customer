@@ -4,7 +4,6 @@ import rentModel from '../models/rentModels';
 // importing Link from react-router-dom to navigate to
 
 const History = ({ userData, logout, singleUser }: any) => {
-  console.log(singleUser);
   const [rents, setRents] = useState([]);
 
   const user = singleUser[0];

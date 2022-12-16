@@ -14,8 +14,6 @@ import NavbarStart from './components/NavbarStart';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
-import { Routes, Route } from 'react-router-dom';
-
 const CLIENT_ID = 'b413f1d7c7497d7b8e6a';
 
 function App() {
@@ -27,7 +25,7 @@ function App() {
     avatar_url: '',
     id: '',
   });
-  const [fetchUser, setFetchUser] = useState([]);
+  const [, setValue] = useState('');
 
   async function getAccessToken(codeParam: string | null) {
     await fetch('http://localhost:4000/auth/getAccessToken?code=' + codeParam, {
@@ -70,10 +68,11 @@ function App() {
       });
   }
 
-  function login() {
+  function login(event: any) {
     window.location.assign(
       `https://github.com/login/oauth/authorize?scope=user&client_id=${CLIENT_ID}`,
     );
+    setValue(event.target.value);
   }
 
   function logout() {
@@ -83,12 +82,7 @@ function App() {
   return (
     <div className='App'>
       {localStorage.getItem('accessToken') ? (
-        <Home
-          userData={userData}
-          logout={logout}
-          fetchUser={fetchUser}
-          setFetchUser={setFetchUser}
-        ></Home>
+        <Home userData={userData} logout={logout}></Home>
       ) : (
         <>
           <img src={Cell} className='bg-layer' alt='cellphone' />
@@ -99,9 +93,18 @@ function App() {
               <i>Green. Smart. Effective. This is how we do it.</i>
             </h3>
             <div>
-              <button className='btn-login btn' onClick={login}>
-                Login with Github <FontAwesomeIcon icon={faGithub} />
+              <button className='btn-login btn' value='register' onClick={login}>
+                Register with GitHub <FontAwesomeIcon icon={faGithub} />
               </button>
+              <p>
+                Already a member?{' '}
+                <button className='login-btn' value='login' onClick={login}>
+                  Login
+                </button>
+              </p>
+              {/* <button className='btn-login btn' onClick={login}>
+                Login with Github <FontAwesomeIcon icon={faGithub} />
+              </button> */}
             </div>
           </div>
         </>
