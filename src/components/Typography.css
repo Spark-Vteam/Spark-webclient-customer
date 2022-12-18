@@ -14,7 +14,14 @@
   font-weight: 200;
 }
 
-a {
-    color: #fff;
+.big {
+  font-size: 24px;
+  color: #fe4600;
+}
+
+.payment-link {
+    text-decoration: none;
+    color: #fe4600;
+    font-size: 1.2em;
 }
 

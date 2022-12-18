@@ -1,6 +1,7 @@
 import History from './History';
 import Overview from './Overview';
 import Payment from './Payment';
+import UpdateUser from './UpdateUser';
 import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import userModel from '../models/userModels';
@@ -25,24 +26,26 @@ const LoggedIn = ({ userData, logout, singleUser }: any) => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className='App'>
-      <>
-        <Routes>
-          <Route
-            path='/'
-            element={<Overview userData={userData} logout={logout} singleUser={singleUser} />}
-          />
-          <Route
-            path='/history'
-            element={<History userData={userData} logout={logout} singleUser={singleUser} />}
-          />
-          <Route
-            path='/payment'
-            element={<Payment userData={userData} logout={logout} singleUser={singleUser} />}
-          />
-        </Routes>
-      </>
-    </div>
+    <>
+      <Routes>
+        <Route
+          path='/'
+          element={<Overview userData={userData} logout={logout} singleUser={singleUser} />}
+        />
+        <Route
+          path='/history'
+          element={<History userData={userData} logout={logout} singleUser={singleUser} />}
+        />
+        <Route
+          path='/payment'
+          element={<Payment userData={userData} logout={logout} singleUser={singleUser} />}
+        />
+        <Route
+          path='/update'
+          element={<UpdateUser userData={userData} logout={logout} singleUser={singleUser} />}
+        />
+      </Routes>
+    </>
   );
 };
 

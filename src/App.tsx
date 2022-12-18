@@ -4,6 +4,7 @@ import './components/Buttons.css';
 import './components/Navbar.css';
 import './components/Footer.css';
 import './components/Form.css';
+import './components/Img.css';
 import Cell from './img/cell.png';
 import Spark from './img/Spark-heading.png';
 
