@@ -57,9 +57,9 @@ const History = ({ userData, logout, singleUser }: any) => {
 
   console.log(rents);
   return (
-    <div>
+    <>
       <Navbar userData={userData} logout={logout} />
-      <div className='App2'>
+      <div className='container'>
         <h2>History of your trips</h2>
         <div className='App-container'>
           {rents.map((rent: any) => (
@@ -80,7 +80,7 @@ const History = ({ userData, logout, singleUser }: any) => {
           ))}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

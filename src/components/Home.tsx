@@ -12,7 +12,7 @@ const Home = ({ userData, logout }: any) => {
   const [password, setPassword] = useState('');
   const [isActive, setIsActive] = useState(false);
   const [singleUser, setSingleUser] = useState([]);
-  
+
   async function handleSubmit(event: any) {
     event.preventDefault();
 
@@ -25,6 +25,7 @@ const Home = ({ userData, logout }: any) => {
       oauth: String(userData.id),
     });
 
+    alert('User created, login to continue.');
     localStorage.removeItem('accessToken');
     logout();
 
@@ -57,7 +58,7 @@ const Home = ({ userData, logout }: any) => {
   });
 
   return (
-    <div className='App'>
+    <>
       {isActive === false ? (
         <>
           <NavbarMin userData={userData} logout={logout} />
@@ -129,7 +130,7 @@ const Home = ({ userData, logout }: any) => {
           gitHubId={userData.id}
         />
       )}
-    </div>
+    </>
   );
 };
 
