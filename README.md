@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Spark-Vteam/Spark-webclient-customer/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/Spark-Vteam/Spark-webclient-customer/?branch=main) [![Build Status](https://scrutinizer-ci.com/g/Spark-Vteam/Spark-webclient-customer/badges/build.png?b=main)](https://scrutinizer-ci.com/g/Spark-Vteam/Spark-webclient-customer/build-status/main)
+
+# Spark webclient
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
