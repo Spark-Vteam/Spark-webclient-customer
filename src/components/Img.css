@@ -1,52 +1,50 @@
 .scooter-img {
-    width: 180px;
-    top: 60%;
-    left: 75%;
-    position: absolute;
+  width: 180px;
+  top: 60%;
+  left: 75%;
+  position: absolute;
 }
 
 #background {
-    background-repeat: no-repeat;
-    background-size: 150px;
-    height: 150px;
-    background-position: center;
+  background-repeat: no-repeat;
+  background-size: 150px;
+  height: 150px;
+  background-position: center;
 }
 
-
-
 #scooter {
-    width: 250px;
-    height: 190px;
-    z-index: 12;
-    margin-top: -200px;
-    float: right;
-    animation-name: movescooter;
-    animation-duration: 12s;
-    animation-iteration-count: infinite;
+  width: 250px;
+  height: 190px;
+  z-index: 12;
+  margin-top: -200px;
+  float: right;
+  animation-name: movescooter;
+  animation-duration: 12s;
+  animation-iteration-count: infinite;
 }
 
 #stop {
-    position: absolute;
+  position: absolute;
 }
 
 @keyframes movescooter {
-    from {
-        transform: translateX(-100px);
-    }
+  from {
+    transform: translateX(-100px);
+  }
 
-    30% {
-        transform: translateX(-600px);
-    }
+  30% {
+    transform: translateX(-600px);
+  }
 
-    40% {
-        transform: translateX(-600px);
-    }
+  40% {
+    transform: translateX(-600px);
+  }
 
-    80% {
-        transform: translateX(-600px);
-    }
+  80% {
+    transform: translateX(-600px);
+  }
 
-    to {
-        transform: translateX(-1600px);
-    }
+  to {
+    transform: translateX(-1600px);
+  }
 }

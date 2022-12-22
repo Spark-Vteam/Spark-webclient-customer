@@ -7,7 +7,6 @@ const Navbar = ({ logout }: any) => {
       <img src={Logo} width='50px' alt='logo' />
       <div className='topnav-right'>
         <Link to='/'>Overview</Link>
-        <Link to='/update'>Update information</Link>
         <Link to='/history'>History</Link>
         <Link to='/payment'>Payment</Link>
         <button

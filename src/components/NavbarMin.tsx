@@ -13,7 +13,9 @@ const Navbar = ({ logout }: any) => {
             logout();
           }}
         >
-          <a color="#fff" href='http://localhost:3000/'>Log out</a>
+          <a color='#fff' href='http://localhost:3000/'>
+            Log out
+          </a>
         </button>
 
         {/* <img

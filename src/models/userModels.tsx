@@ -4,7 +4,7 @@ const userModels = {
 
     const user = await response.json();
 
-    return user[0];
+    return user.data;
   },
   postUser: async function postUser(insertedUser: any) {
     fetch('http://localhost:4000/user', {
@@ -43,7 +43,7 @@ const userModels = {
 
     const user = await response.json();
 
-    return user[0];
+    return user.data;
   },
 };
 
