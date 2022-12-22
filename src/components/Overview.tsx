@@ -57,8 +57,8 @@ const Overview = ({ userData, logout, singleUser }: any) => {
               </Link>
               <p>
                 <strong>
-                  Seems like you not have added any Payment method. Click link above to easily
-                  choose monthly payment or load money to your account.
+                  Seems like you not have added any Payment method. Click link above to easily add a
+                  credit card or to load money to your account.
                 </strong>
               </p>
             </div>
