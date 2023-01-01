@@ -2,7 +2,7 @@
 
 # Spark webclient
 
-Welcome to the Spark webclient! This is a frontend React app that is served at port 3000. To start up all backend and frontend applications for Spark, follow the the README instructions in [the main Spark repo](https://github.com/Spark-Vteam/Spark-Project) instead.
+Welcome to the Spark webclient! This is a sub module of the Spark project. It contains code for the customer web client. Follow instructions below to start up the client only. To start up all backend and frontend applications for Spark, follow the the README instructions in [the main Spark repo](https://github.com/Spark-Vteam/Spark-Project) instead.
 
 ## Getting Started
 
