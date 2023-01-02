@@ -1,17 +1,15 @@
 import './App.css';
-import './components/Typography.css';
-import './components/Buttons.css';
-import './components/Navbar.css';
-import './components/Footer.css';
-import './components/Form.css';
-import './components/Toast.css';
-import './components/Table.css';
-import './components/Img.css';
+import './components/css/Typography.css';
+import './components/css/Buttons.css';
+import './components/css/Navbar.css';
+import './components/css/Footer.css';
+import './components/css/Form.css';
+import './components/css/Toast.css';
+import './components/css/Table.css';
+import './components/css/Img.css';
 import Cell from './img/cell.png';
 import Spark from './img/Spark-heading.png';
-
 import Home from './components/Home';
-import Footer from './components/Footer';
 import { useState, useEffect } from 'react';
 import NavbarStart from './components/NavbarStart';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -105,14 +103,10 @@ function App() {
                   Login
                 </button>
               </p>
-              {/* <button className='btn-login btn' onClick={login}>
-                Login with Github <FontAwesomeIcon icon={faGithub} />
-              </button> */}
             </div>
           </div>
         </>
       )}
-      {/* <Footer /> */}
     </div>
   );
 }

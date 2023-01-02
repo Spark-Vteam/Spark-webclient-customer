@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import './Toast.css';
+import './css/Toast.css';
 
 function Toast(props: any) {
   const [visible, setVisible] = useState(true);
-
-  console.log('toast');
 
   const hideToast = () => {
     setVisible(false);
