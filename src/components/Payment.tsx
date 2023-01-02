@@ -87,7 +87,7 @@ const Payment = ({ userData, logout, singleUser }: any) => {
       <Navbar userData={userData} logout={logout} />
       {showToast && <Toast message={toastMessage} />}
       <div className='container'>
-        <h2>Payment method & Invoices</h2>
+        <h2>Payment method</h2>
         <div className='flex-container'>
           <div className='child'>
             <h3>Current balance: {user.Balance} SEK</h3>
@@ -131,11 +131,11 @@ const Payment = ({ userData, logout, singleUser }: any) => {
                 <th></th>
               </tr>
             </thead>
-            <tbody className='pricing-table-body'>
+            <tbody data-testid="invoice-row" className='pricing-table-body'>
               {invoices.map((invoice) => (
                 <tr key={invoice.id}>
                   <td>{invoice.Amount}</td>
-                  <td>{formatDate(invoice.Created)}</td>
+                  <td data-testid="invoice-row">{formatDate(invoice.Created)}</td>
                   <td>{formatDate(invoice.Expires)}</td>
                   <td>{formatDate(invoice.Paid)}</td>
                   <td>{invoice.Rents_id}</td>
