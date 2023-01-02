@@ -14,9 +14,9 @@ export interface InvoiceProps {
 }
 
 export interface CreditCard {
-  CardNumber: string;
-  Expiry: string;
-  FirstName: string;
-  LastName: string;
-  TruncatedCardNumber: string;
+  cardNumber: string;
+  expiry: string;
+  firstName: string;
+  lastName: string;
+  truncatedCardNumber: string;
 }

@@ -40,3 +40,8 @@
   margin: 4px 2px;
   cursor: pointer;
 }
+
+.pricing-table-body .disabled {
+  background-color: grey;
+}
+

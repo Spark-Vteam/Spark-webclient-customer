@@ -1,13 +1,13 @@
 const userModels = {
   getUsers: async function getUsers() {
-    const response = await fetch('http://localhost:4000/user');
+    const response = await fetch('http://localhost:4000/v1/user');
 
     const user = await response.json();
 
     return user.data;
   },
   postUser: async function postUser(insertedUser: any) {
-    fetch('http://localhost:4000/user', {
+    fetch('http://localhost:4000/v1/user', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -23,7 +23,7 @@ const userModels = {
     return 'success';
   },
   updateUser: async function updateUser(id: string, insertedUser: any) {
-    fetch(`http://localhost:4000/user/${id}`, {
+    fetch(`http://localhost:4000/v1/user/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ const userModels = {
     return 'success';
   },
   getSingleUser: async function getSingleUser(id: string) {
-    const response = await fetch(`http://localhost:4000/user/${id}`);
+    const response = await fetch(`http://localhost:4000/v1/user/${id}`);
 
     const user = await response.json();
 
