@@ -3,6 +3,7 @@ import paymentModel from '../models/paymentModels';
 import { Invoice } from '../interfaces/payment';
 import Toast from './Toast';
 import CreditCard from './CreditCard';
+import paymentModule from '../modules/paymentModule';
 
 import Navbar from './Navbar';
 // importing Link from react-router-dom to navigate to
@@ -12,6 +13,8 @@ const Payment = ({ userData, logout, singleUser }: any) => {
   const [balance, setBalance] = useState('');
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
+
+  const creditCard = '123456';
 
   const user = singleUser[0];
 
@@ -56,7 +59,29 @@ const Payment = ({ userData, logout, singleUser }: any) => {
     }
   }
 
-  console.log(user);
+  async function doPayment(event: any) {
+    event.preventDefault();
+
+    const invoiceId = event.target.value;
+
+    try {
+      await paymentModel.payOneInvoice(invoiceId, user.id);
+      setToastMessage('Invoice payed!');
+      setShowToast(true);
+    } catch (error) {
+      console.error(error);
+      setToastMessage('Could not pay invoice, try again.');
+      setShowToast(true);
+    }
+  }
+
+  function checkStatusMessage(status: number): string {
+    const message = paymentModule.checkStatus(status);
+    return message;
+  }
+
+  console.log(user.Balance);
+
   return (
     <div className='App'>
       <Navbar userData={userData} logout={logout} />
@@ -65,11 +90,11 @@ const Payment = ({ userData, logout, singleUser }: any) => {
         <h2>Payment method & Invoices</h2>
         <div className='flex-container'>
           <div className='child'>
-            <h3>Current balance: {user.Balance}</h3>
+            <h3>Current balance: {user.Balance} SEK</h3>
             <form onSubmit={handleSubmit}>
               <label>
-                Update balance:
                 <input
+                  placeholder='Update balance'
                   type='number'
                   value={balance}
                   onChange={(event) => setBalance(event.target.value)}
@@ -83,8 +108,8 @@ const Payment = ({ userData, logout, singleUser }: any) => {
           <div className='child'>
             {user.PartialPayment === 0 || user.PartialPayment === null ? (
               <div>
-                <h3>Add a credit card to pay monthly</h3>
-                <CreditCard />
+                <h3>Add a credit card</h3>
+                <CreditCard user={user} />
               </div>
             ) : (
               <p>Credit Card added</p>
@@ -103,6 +128,7 @@ const Payment = ({ userData, logout, singleUser }: any) => {
                 <th>Rent id</th>
                 <th>Status</th>
                 <th>Action</th>
+                <th></th>
               </tr>
             </thead>
             <tbody className='pricing-table-body'>
@@ -113,10 +139,31 @@ const Payment = ({ userData, logout, singleUser }: any) => {
                   <td>{formatDate(invoice.Expires)}</td>
                   <td>{formatDate(invoice.Paid)}</td>
                   <td>{invoice.Rents_id}</td>
-                  <td>{invoice.Status}</td>
-                  <td>
-                    <button value={invoice.id}>Pay with balance</button>
-                  </td>
+                  <td>{checkStatusMessage(invoice.Status)}</td>
+                  {invoice.Status === 40 ||
+                  user.Balance + 1 <= invoice.Amount ||
+                  invoice.Status === 20 ? (
+                    <td>
+                      <button value={invoice.id} className='disabled' onClick={doPayment} disabled>
+                        Pay with balance
+                      </button>
+                    </td>
+                  ) : (
+                    <td>
+                      <button value={invoice.id} onClick={doPayment}>
+                        Pay with balance
+                      </button>
+                    </td>
+                  )}
+                  {creditCard === '123456' && invoice.Status === 40 || invoice.Status === 20 ? (
+                    <td></td>
+                  ) : (
+                    <td>
+                      <button value={invoice.id} onClick={doPayment}>
+                        Pay with credit card ****3456
+                      </button>
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>

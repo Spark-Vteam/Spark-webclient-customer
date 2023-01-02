@@ -31,7 +31,7 @@ function App() {
   const [, setValue] = useState('');
 
   async function getAccessToken(codeParam: string | null) {
-    await fetch('http://localhost:4000/auth/getAccessToken?code=' + codeParam, {
+    await fetch('http://localhost:4000/v1/auth/getAccessToken?code=' + codeParam, {
       method: 'GET',
     })
       .then((response) => {
@@ -55,7 +55,7 @@ function App() {
   }, []);
 
   async function getUserData() {
-    await fetch('http://localhost:4000/auth/getUserData', {
+    await fetch('http://localhost:4000/v1/auth/getUserData', {
       method: 'GET',
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
