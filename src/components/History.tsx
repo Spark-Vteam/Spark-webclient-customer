@@ -31,7 +31,9 @@ const History = ({ userData, logout, singleUser }: any) => {
   function getCity(coordinates: string) {
     if (coordinates.split(',')[0][1] === '5') {
       return 'Lund';
-    }
+    } else if (coordinates.split(',')[0][1] === '6') {
+      return 'Karlskrona';
+    } 
     return 'Stockholm';
   }
 
@@ -60,7 +62,7 @@ const History = ({ userData, logout, singleUser }: any) => {
     <>
       <Navbar userData={userData} logout={logout} />
       <div className='container'>
-        <h2>History of your trips</h2>
+        <h1>History of your trips</h1>
         <div className='App-container'>
           {rents.map((rent: any) => (
             <Fragment key={rent.id}>

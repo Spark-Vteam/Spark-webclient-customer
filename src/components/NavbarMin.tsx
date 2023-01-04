@@ -4,7 +4,7 @@ import Logo from '../img/Logo.png';
 const Navbar = ({ logout }: any) => {
   return (
     <div className='topnav'>
-      <img src={Logo} width='50px' alt='logo' />
+      <img src={Logo} width='40px' alt='logo' />
       <div className='topnav-right'>
         <button
           className='btn-logout btn'
@@ -17,15 +17,6 @@ const Navbar = ({ logout }: any) => {
             Log out
           </a>
         </button>
-
-        {/* <img
-          className='profile-img'
-          title='My account'
-          width='50px'
-          height='50px'
-          src={userData.avatar_url}
-          alt='GitHub profile picture'
-        ></img> */}
       </div>
     </div>
   );

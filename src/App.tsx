@@ -10,6 +10,8 @@ import './components/css/Img.css';
 import Cell from './img/cell.png';
 import Spark from './img/Spark-heading.png';
 import Home from './components/Home';
+import Footer from './components/Footer';
+
 import { useState, useEffect } from 'react';
 import NavbarStart from './components/NavbarStart';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -28,6 +30,20 @@ function App() {
   });
   const [, setValue] = useState('');
 
+  useEffect(() => {
+    // Kontrollera om accessToken finns i localStorage
+    if (localStorage.getItem('accessToken')) {
+      // Hämta användardata från localStorage och sätt till userData-statet
+      setUserData({
+        login: localStorage.getItem('user') || '',
+        email: localStorage.getItem('email') || '',
+        name: localStorage.getItem('name') || '',
+        avatar_url: localStorage.getItem('avatar') || '',
+        id: localStorage.getItem('id') || '',
+      });
+    }
+  }, []);
+
   async function getAccessToken(codeParam: string | null) {
     await fetch('http://localhost:4000/v1/auth/getAccessToken?code=' + codeParam, {
       method: 'GET',
@@ -39,16 +55,33 @@ function App() {
         if (data.access_token) {
           localStorage.setItem('accessToken', data.access_token);
           setRerender(!rerender);
+
+          // Sätt användardata till userData-statet
+          setUserData(data);
+          localStorage.setItem('user', data.login);
+          localStorage.setItem('avatar', data.avatar_url);
+          localStorage.setItem('email', data.email);
+          localStorage.setItem('name', data.name);
+          localStorage.setItem('id', data.id);
         }
       });
     getUserData();
   }
+
   useEffect(() => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const codeParam = urlParams.get('code');
     if (codeParam && localStorage.getItem('accessToken') === null) {
       getAccessToken(codeParam);
+    } else {
+      setUserData({
+        login: localStorage.getItem('user') || '',
+        email: localStorage.getItem('email') || '',
+        name: localStorage.getItem('name') || '',
+        avatar_url: localStorage.getItem('avatar') || '',
+        id: localStorage.getItem('id') || '',
+      });
     }
   }, []);
 
@@ -66,6 +99,9 @@ function App() {
         setUserData(data);
         localStorage.setItem('user', data.login);
         localStorage.setItem('avatar', data.avatar_url);
+        localStorage.setItem('email', data.email);
+        localStorage.setItem('name', data.name);
+        localStorage.setItem('id', data.id);
       });
   }
 
@@ -77,7 +113,19 @@ function App() {
   }
 
   function logout() {
-    setRerender(!rerender);
+    // setRerender(!rerender);
+
+    // Ta bort accessToken från localStorage
+    localStorage.removeItem('accessToken');
+
+    // Sätt userData tillbaka till ursprungsvärdet
+    setUserData({
+      login: '',
+      email: '',
+      name: '',
+      avatar_url: '',
+      id: '',
+    });
   }
 
   return (
@@ -107,6 +155,7 @@ function App() {
           </div>
         </>
       )}
+      <Footer />
     </div>
   );
 }

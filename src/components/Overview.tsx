@@ -40,7 +40,7 @@ const Overview = ({ userData, logout, singleUser }: any) => {
   return (
     <>
       <Navbar userData={userData} logout={logout} />
-      <div className='container'>
+      <div className='overview-container'>
         <div>
           <h1>
             {message} {user.FirstName}!

@@ -1,15 +1,14 @@
 footer {
-  position: absolute;
-  bottom: 0;
+  position: fixed;
   left: 0;
-  right: 0;
+  bottom: 0;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #fff;
+  color: rgb(255, 255, 255);
   padding: 10px;
-  border-top: 1px solid #fff;
-  background-color: #1e2024;
+  background-color: #090909;
 }
 
 .left {
@@ -22,7 +21,7 @@ footer {
 }
 
 .right a {
-  color: #fff;
+  color: rgb(0, 0, 0);
   text-decoration: none;
   font-size: 0.8em;
 }
