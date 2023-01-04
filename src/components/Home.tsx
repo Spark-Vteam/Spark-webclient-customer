@@ -12,6 +12,7 @@ const Home = ({ userData, logout }: any) => {
   const [password, setPassword] = useState('');
   const [isActive, setIsActive] = useState(false);
   const [singleUser, setSingleUser] = useState([]);
+  const [oauth, setOauth] = useState([]);
 
   async function handleSubmit(event: any) {
     event.preventDefault();
@@ -52,6 +53,7 @@ const Home = ({ userData, logout }: any) => {
     if (user.Oauth === String(userData.id) && isActive === false) {
       const fetchUser = await userModel.getSingleUser(user.id);
       localStorage.setItem('id', user.id);
+      setOauth(user.Oauth);
       setSingleUser(fetchUser);
       setIsActive(true);
     }

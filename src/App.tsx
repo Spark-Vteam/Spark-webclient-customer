@@ -10,6 +10,7 @@ import './components/css/Img.css';
 import Cell from './img/cell.png';
 import Spark from './img/Spark-heading.png';
 import Home from './components/Home';
+import Footer from './components/Footer';
 import { useState, useEffect } from 'react';
 import NavbarStart from './components/NavbarStart';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -27,6 +28,7 @@ function App() {
     id: '',
   });
   const [, setValue] = useState('');
+
 
   async function getAccessToken(codeParam: string | null) {
     await fetch('http://localhost:4000/v1/auth/getAccessToken?code=' + codeParam, {
@@ -49,6 +51,14 @@ function App() {
     const codeParam = urlParams.get('code');
     if (codeParam && localStorage.getItem('accessToken') === null) {
       getAccessToken(codeParam);
+    } else {
+      setUserData({
+        login: localStorage.getItem('user') || '',
+        email: localStorage.getItem('email') || '',
+        name: localStorage.getItem('name') || '',
+        avatar_url: localStorage.getItem('avatar') || '',
+        id: localStorage.getItem('id') || '',
+      });
     }
   }, []);
 
@@ -66,6 +76,9 @@ function App() {
         setUserData(data);
         localStorage.setItem('user', data.login);
         localStorage.setItem('avatar', data.avatar_url);
+        localStorage.setItem('email', data.email);
+        localStorage.setItem('name', data.name);
+        localStorage.setItem('id', data.id);
       });
   }
 
@@ -107,6 +120,7 @@ function App() {
           </div>
         </>
       )}
+      <Footer />
     </div>
   );
 }

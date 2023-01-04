@@ -3,7 +3,7 @@ import { CreditCard } from '../interfaces/payment'
 
 const paymentModels = {
   getInvoicesByUser: async function getInvoicesByUser(id: string) {
-    const response = await fetch(`http://localhost:4000/v1/invoice/user/${id}`);
+    const response = await fetch('http://localhost:4000/v1/invoice/user/1');
 
     const invoice = await response.json();
 
