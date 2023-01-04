@@ -141,11 +141,11 @@ const Payment = ({ userData, logout, singleUser }: any) => {
                 <th></th>
               </tr>
             </thead>
-            <tbody data-testid='invoice-row' data-testid="invoice-row" className='pricing-table-body'>
+            <tbody data-testid='invoice-row' className='pricing-table-body'>
               {invoices.map((invoice) => (
                 <tr key={invoice.id}>
                   <td>{invoice.Amount}</td>
-                  <td data-testid='invoice-row' data-testid="invoice-row">{formatDate(invoice.Created)}</td>
+                  <td data-testid='invoice-row'>{formatDate(invoice.Created)}</td>
                   <td>{formatDate(invoice.Expires)}</td>
                   <td>{formatDate(invoice.Paid)}</td>
                   <td>{invoice.Rents_id}</td>

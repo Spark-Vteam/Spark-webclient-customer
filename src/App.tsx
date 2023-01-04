@@ -10,6 +10,8 @@ import './components/css/Img.css';
 import Cell from './img/cell.png';
 import Spark from './img/Spark-heading.png';
 import Home from './components/Home';
+import Footer from './components/Footer';
+
 import { useState, useEffect } from 'react';
 import NavbarStart from './components/NavbarStart';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
