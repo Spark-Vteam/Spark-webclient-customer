@@ -3,7 +3,7 @@ import Logo from '../img/Logo.png';
 
 const Navbar = ({ logout }: any) => {
   return (
-    <div className='topnav'>
+    <div data-testid='navbar' className='topnav'>
       <img src={Logo} width='40px' alt='logo' />
       <div className='topnav-right'>
         <Link to='/'>Overview</Link>

@@ -10,8 +10,6 @@ const Overview = ({ userData, logout, singleUser }: any) => {
   const [rents, setRents] = useState([]);
   const user = singleUser[0];
 
-  console.log(userData, singleUser);
-
   /**
    * fetch users from API
    * @returns {Promise<void>}

@@ -1,9 +1,9 @@
 import NavbarMin from './NavbarMin';
+import { act } from '@testing-library/react';
 import { useState, useEffect } from 'react';
 import userModel from '../models/userModels';
 import LoggedIn from './LoggedIn';
 import Toast from './Toast';
-
 
 const Home = ({ userData, logout }: any) => {
   const [email, setEmail] = useState('');
@@ -30,12 +30,14 @@ const Home = ({ userData, logout }: any) => {
         password: password,
         oauth: String(userData.id),
       });
-      setToastMessage('User created, login to continue.');
-      setShowToast(true);
+      act(() => {
+        setToastMessage('User created, login to continue.');
+        setShowToast(true);
+      });
       localStorage.removeItem('accessToken');
       logout();
     } catch (error) {
-      console.log(JSON.stringify(error))
+      console.log(JSON.stringify(error));
       console.error(JSON.stringify(error));
       // setToastMessage(JSON.stringify(error.message));
       setShowToast(true);

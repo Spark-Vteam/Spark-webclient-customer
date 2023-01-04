@@ -29,15 +29,27 @@ const LoggedIn = ({ userData, logout, singleUser }: any) => {
       <Routes>
         <Route
           path='/'
-          element={<Overview userData={userData} logout={logout} singleUser={singleUser} />}
+          element={
+            <div data-testid='overview-route'>
+              <Overview userData={userData} logout={logout} singleUser={singleUser} />
+            </div>
+          }
         />
         <Route
           path='/history'
-          element={<History userData={userData} logout={logout} singleUser={singleUser} />}
+          element={
+            <div data-testid='history-route'>
+              <History userData={userData} logout={logout} singleUser={singleUser} />
+            </div>
+          }
         />
         <Route
           path='/payment'
-          element={<Payment userData={userData} logout={logout} singleUser={singleUser} />}
+          element={
+            <div data-testid='payment-route'>
+              <Payment userData={userData} logout={logout} singleUser={singleUser} />
+            </div>
+          }
         />
       </Routes>
     </>

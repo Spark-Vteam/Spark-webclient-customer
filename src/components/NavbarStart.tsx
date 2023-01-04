@@ -3,9 +3,9 @@ import Logo from '../img/Logo.png';
 
 const NavbarStart = () => {
   return (
-    <div className='topnav-start'>
+    <div data-testid='topnav-start' className='topnav-start'>
       <img src={Logo} width='40px' alt='logo' />
-      <div className='topnav-right-start'>
+      <div data-testid='topnav-right-start' className='topnav-right-start'>
         <Link to='/'> Start</Link>
       </div>
     </div>

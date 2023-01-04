@@ -90,8 +90,6 @@ const Payment = ({ userData, logout, singleUser }: any) => {
     return message;
   }
 
-  console.log(user.Balance);
-
   return (
     <div className='App'>
       <Navbar userData={userData} logout={logout} />

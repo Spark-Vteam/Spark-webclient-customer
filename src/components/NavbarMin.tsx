@@ -17,15 +17,6 @@ const Navbar = ({ logout }: any) => {
             Log out
           </a>
         </button>
-
-        {/* <img
-          className='profile-img'
-          title='My account'
-          width='50px'
-          height='50px'
-          src={userData.avatar_url}
-          alt='GitHub profile picture'
-        ></img> */}
       </div>
     </div>
   );
