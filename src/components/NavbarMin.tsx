@@ -4,7 +4,7 @@ import Logo from '../img/Logo.png';
 const Navbar = ({ logout }: any) => {
   return (
     <div className='topnav'>
-      <img src={Logo} width='50px' alt='logo' />
+      <img src={Logo} width='40px' alt='logo' />
       <div className='topnav-right'>
         <button
           className='btn-logout btn'

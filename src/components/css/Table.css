@@ -5,10 +5,16 @@
   background-color: #fff;
   color: black;
   margin: 0 auto;
+  /* margin-bottom: 20px; */
+}
+
+.pricing-table-body {
+  margin-bottom: 20px;
 }
 
 .pricing-table-head {
   background-color: #00b38f;
+  color: rgb(255, 255, 255);
 }
 
 .pricing-table-row {
@@ -44,4 +50,3 @@
 .pricing-table-body .disabled {
   background-color: grey;
 }
-

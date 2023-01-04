@@ -13,10 +13,20 @@ const Payment = ({ userData, logout, singleUser }: any) => {
   const [balance, setBalance] = useState('');
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
+  const [rerender, setRerender] = useState(false);
 
   const creditCard = '123456';
 
   const user = singleUser[0];
+
+  useEffect(() => {
+    setRerender(!rerender);
+  }, [balance]);
+
+  useEffect(() => {
+    console.log('rerender:', rerender);
+    console.log('accessToken:', localStorage.getItem('accessToken'));
+  }, [rerender]);
 
   /**
    * fetch users from API
@@ -31,7 +41,7 @@ const Payment = ({ userData, logout, singleUser }: any) => {
     (async () => {
       await fetchInvoices();
     })();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [balance]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function formatDate(dateString: string): string {
     if (dateString === null) {
@@ -87,7 +97,7 @@ const Payment = ({ userData, logout, singleUser }: any) => {
       <Navbar userData={userData} logout={logout} />
       {showToast && <Toast message={toastMessage} />}
       <div className='container'>
-        <h2>Payment method</h2>
+        <h1>Payment method</h1>
         <div className='flex-container'>
           <div className='child'>
             <h3>Current balance: {user.Balance} SEK</h3>
@@ -117,7 +127,7 @@ const Payment = ({ userData, logout, singleUser }: any) => {
           </div>
         </div>
         <div className='invoices-container'>
-          <h3>Invoices</h3>
+          <h1>Invoices</h1>
           <table className='pricing-table'>
             <thead className='pricing-table-head'>
               <tr className='pricing-table-row'>
@@ -131,11 +141,11 @@ const Payment = ({ userData, logout, singleUser }: any) => {
                 <th></th>
               </tr>
             </thead>
-            <tbody data-testid="invoice-row" className='pricing-table-body'>
+            <tbody data-testid='invoice-row' data-testid="invoice-row" className='pricing-table-body'>
               {invoices.map((invoice) => (
                 <tr key={invoice.id}>
                   <td>{invoice.Amount}</td>
-                  <td data-testid="invoice-row">{formatDate(invoice.Created)}</td>
+                  <td data-testid='invoice-row' data-testid="invoice-row">{formatDate(invoice.Created)}</td>
                   <td>{formatDate(invoice.Expires)}</td>
                   <td>{formatDate(invoice.Paid)}</td>
                   <td>{invoice.Rents_id}</td>
@@ -155,7 +165,7 @@ const Payment = ({ userData, logout, singleUser }: any) => {
                       </button>
                     </td>
                   )}
-                  {creditCard === '123456' && invoice.Status === 40 || invoice.Status === 20 ? (
+                  {(creditCard === '123456' && invoice.Status === 40) || invoice.Status === 20 ? (
                     <td></td>
                   ) : (
                     <td>

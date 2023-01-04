@@ -2,6 +2,8 @@ import NavbarMin from './NavbarMin';
 import { useState, useEffect } from 'react';
 import userModel from '../models/userModels';
 import LoggedIn from './LoggedIn';
+import Toast from './Toast';
+
 
 const Home = ({ userData, logout }: any) => {
   const [email, setEmail] = useState('');
@@ -12,24 +14,32 @@ const Home = ({ userData, logout }: any) => {
   const [password, setPassword] = useState('');
   const [isActive, setIsActive] = useState(false);
   const [singleUser, setSingleUser] = useState([]);
+  const [, setOauth] = useState([]);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
 
   async function handleSubmit(event: any) {
     event.preventDefault();
 
-    await userModel.postUser({
-      firstName: name,
-      lastName: lastname,
-      phoneNumber: phone,
-      emailAdress: email,
-      password: password,
-      oauth: String(userData.id),
-    });
-
-    alert('User created, login to continue.');
-    localStorage.removeItem('accessToken');
-    logout();
-
-    // setIsActive(true);
+    try {
+      await userModel.postUser({
+        firstName: name,
+        lastName: lastname,
+        phoneNumber: phone,
+        emailAdress: email,
+        password: password,
+        oauth: String(userData.id),
+      });
+      setToastMessage('User created, login to continue.');
+      setShowToast(true);
+      localStorage.removeItem('accessToken');
+      logout();
+    } catch (error) {
+      console.log(JSON.stringify(error))
+      console.error(JSON.stringify(error));
+      // setToastMessage(JSON.stringify(error.message));
+      setShowToast(true);
+    }
   }
 
   /**
@@ -49,9 +59,10 @@ const Home = ({ userData, logout }: any) => {
 
   /** @type {Array} filter bikes depending on status */
   users.filter(async (user: any) => {
-    if (user.Oauth === String(userData.id) && isActive === false) {
+    if (user.Oauth === String(userData.id)) {
       const fetchUser = await userModel.getSingleUser(user.id);
       localStorage.setItem('id', user.id);
+      setOauth(user.Oauth);
       setSingleUser(fetchUser);
       setIsActive(true);
     }
@@ -62,6 +73,7 @@ const Home = ({ userData, logout }: any) => {
       {isActive === false ? (
         <>
           <NavbarMin userData={userData} logout={logout} />
+          {showToast && <Toast message={toastMessage} />}
           <div className='home-container'>
             <h2>Welcome {localStorage.getItem('user')}!</h2>
             <p>Continue to site by adding your information:</p>
