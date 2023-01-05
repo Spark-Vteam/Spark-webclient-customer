@@ -28,7 +28,7 @@ const Home = ({ userData, logout }: any) => {
         phoneNumber: phone,
         emailAdress: email,
         password: password,
-        oauth: String(userData.id),
+        oauth: String(userData.id) || '0',
       });
       act(() => {
         setToastMessage('User created, login to continue.');
@@ -59,16 +59,23 @@ const Home = ({ userData, logout }: any) => {
     })();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  /** @type {Array} filter bikes depending on status */
-  users.filter(async (user: any) => {
-    if (user.Oauth === String(userData.id)) {
-      const fetchUser = await userModel.getSingleUser(user.id);
-      localStorage.setItem('id', user.id);
-      setOauth(user.Oauth);
-      setSingleUser(fetchUser);
+  useEffect(() => {
+    if (localStorage.getItem('value') === 'login-username') {
+      setSingleUser(userData);
       setIsActive(true);
+    } else {
+      /** @type {Array} filter users depending on id */
+      users.filter(async (user: any) => {
+        if (user.Oauth === String(userData.id)) {
+          const fetchUser = await userModel.getSingleUser(user.id);
+          localStorage.setItem('id', user.id);
+          setOauth(user.Oauth);
+          setSingleUser(fetchUser[0]);
+          setIsActive(true);
+        }
+      });
     }
-  });
+  }, [userData]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>

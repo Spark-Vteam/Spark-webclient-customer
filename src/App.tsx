@@ -7,20 +7,16 @@ import './components/css/Form.css';
 import './components/css/Toast.css';
 import './components/css/Table.css';
 import './components/css/Img.css';
+import './components/css/Modal.css';
 import Cell from './img/cell.png';
 import Spark from './img/Spark-heading.png';
 import Home from './components/Home';
 import Footer from './components/Footer';
-
-import { useState, useEffect } from 'react';
+import Login from './components/Login';
+import { useState } from 'react';
 import NavbarStart from './components/NavbarStart';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
-
-const CLIENT_ID = 'b413f1d7c7497d7b8e6a';
 
 function App() {
-  const [rerender, setRerender] = useState(false);
   const [userData, setUserData] = useState({
     login: '',
     email: '',
@@ -28,97 +24,13 @@ function App() {
     avatar_url: '',
     id: '',
   });
-  const [, setValue] = useState('');
-
-  useEffect(() => {
-    // Kontrollera om accessToken finns i localStorage
-    if (localStorage.getItem('accessToken')) {
-      // Hämta användardata från localStorage och sätt till userData-statet
-      setUserData({
-        login: localStorage.getItem('user') || '',
-        email: localStorage.getItem('email') || '',
-        name: localStorage.getItem('name') || '',
-        avatar_url: localStorage.getItem('avatar') || '',
-        id: localStorage.getItem('id') || '',
-      });
-    }
-  }, []);
-
-  async function getAccessToken(codeParam: string | null) {
-    await fetch('http://localhost:4000/v1/auth/getAccessToken?code=' + codeParam, {
-      method: 'GET',
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        if (data.access_token) {
-          localStorage.setItem('accessToken', data.access_token);
-          setRerender(!rerender);
-
-          // Sätt användardata till userData-statet
-          setUserData(data);
-          localStorage.setItem('user', data.login);
-          localStorage.setItem('avatar', data.avatar_url);
-          localStorage.setItem('email', data.email);
-          localStorage.setItem('name', data.name);
-          localStorage.setItem('id', data.id);
-        }
-      });
-    getUserData();
-  }
-
-  useEffect(() => {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const codeParam = urlParams.get('code');
-    if (codeParam && localStorage.getItem('accessToken') === null) {
-      getAccessToken(codeParam);
-    } else {
-      setUserData({
-        login: localStorage.getItem('user') || '',
-        email: localStorage.getItem('email') || '',
-        name: localStorage.getItem('name') || '',
-        avatar_url: localStorage.getItem('avatar') || '',
-        id: localStorage.getItem('id') || '',
-      });
-    }
-  }, []);
-
-  async function getUserData() {
-    await fetch('http://localhost:4000/v1/auth/getUserData', {
-      method: 'GET',
-      headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
-      },
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setUserData(data);
-        localStorage.setItem('user', data.login);
-        localStorage.setItem('avatar', data.avatar_url);
-        localStorage.setItem('email', data.email);
-        localStorage.setItem('name', data.name);
-        localStorage.setItem('id', data.id);
-      });
-  }
-
-  function login(event: any) {
-    window.location.assign(
-      `https://github.com/login/oauth/authorize?scope=user&client_id=${CLIENT_ID}`,
-    );
-    setValue(event.target.value);
-  }
 
   function logout() {
     // setRerender(!rerender);
 
-    // Ta bort accessToken från localStorage
+    console.log('ska loggas ut');
     localStorage.removeItem('accessToken');
-
-    // Sätt userData tillbaka till ursprungsvärdet
+    localStorage.removeItem('token');
     setUserData({
       login: '',
       email: '',
@@ -130,7 +42,7 @@ function App() {
 
   return (
     <div className='App'>
-      {localStorage.getItem('accessToken') ? (
+      {localStorage.getItem('accessToken') || localStorage.getItem('token') ? (
         <Home userData={userData} logout={logout}></Home>
       ) : (
         <>
@@ -141,17 +53,7 @@ function App() {
             <h3 className='head-text-sub'>
               <i>Green. Smart. Effective. This is how we do it.</i>
             </h3>
-            <div>
-              <button className='btn-login btn' value='register' onClick={login}>
-                Register with GitHub <FontAwesomeIcon icon={faGithub} />
-              </button>
-              <p>
-                Already a member?{' '}
-                <button className='login-btn' value='login' onClick={login}>
-                  Login
-                </button>
-              </p>
-            </div>
+            <Login setUserData={setUserData} />
           </div>
         </>
       )}

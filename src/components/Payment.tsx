@@ -15,9 +15,10 @@ const Payment = ({ userData, logout, singleUser }: any) => {
   const [toastMessage, setToastMessage] = useState('');
   const [rerender, setRerender] = useState(false);
 
+  console.log(invoices);
   const creditCard = '123456';
 
-  const user = singleUser[0];
+  const user = singleUser;
 
   useEffect(() => {
     setRerender(!rerender);
