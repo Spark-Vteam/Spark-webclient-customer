@@ -5,11 +5,11 @@ import Toast from './Toast';
 
 const CreditCardForm = ({ user }: any) => {
   const [card, setCard] = useState<CreditCard>({
-    cardNumber: '',
+    pan: '',
     expiry: '',
     firstName: '',
     lastName: '',
-    truncatedCardNumber: '',
+    truncpan: '',
   });
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
@@ -22,17 +22,17 @@ const CreditCardForm = ({ user }: any) => {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const insertCard = {
-      cardNumber: card.cardNumber,
+    const creditCardInfo = {
+      pan: card.pan,
       expiry: card.expiry,
       firstName: card.firstName,
       lastName: card.lastName,
-      truncatedCardNumber: card.cardNumber.slice(-4),
+      truncpan: card.pan.slice(-4),
     };
 
     try {
-      await paymentModel.insertCreditCard(user.id, insertCard);
-      setToastMessage(`Card ****${card.cardNumber.slice(-4)} added`);
+      await paymentModel.insertCreditCard(user.id, creditCardInfo);
+      setToastMessage(`Card ****${card.pan.slice(-4)} added`);
       setShowToast(true);
     } catch (error) {
       console.error(error);
@@ -48,8 +48,8 @@ const CreditCardForm = ({ user }: any) => {
         <input
           placeholder='Card number'
           type='text'
-          name='cardNumber'
-          value={card.cardNumber}
+          name='pan'
+          value={card.pan}
           onChange={handleChange}
         />
         <br />
@@ -77,11 +77,11 @@ const CreditCardForm = ({ user }: any) => {
           onChange={handleChange}
         />
         <br />
-        {/* <label htmlFor='truncatedCardNumber'>Truncated card number</label>
+        {/* <label htmlFor='truncpan'>Truncated card number</label>
       <input
         type='text'
-        name='truncatedCardNumber'
-        value={card.truncatedCardNumber}
+        name='truncpan'
+        value={card.truncpan}
         onChange={handleChange}
       />
       <br /> */}

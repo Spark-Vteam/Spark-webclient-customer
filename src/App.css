@@ -117,3 +117,12 @@ body {
   margin-top: 50px;
   margin-bottom: 100px;
 }
+
+.payment-container {
+  margin: 0 auto;
+  background-color: #ededed;
+  max-width: 30%;
+  padding: 1em;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}

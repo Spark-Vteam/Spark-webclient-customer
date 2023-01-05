@@ -7,8 +7,6 @@ import { Link } from 'react-router-dom';
 // importing Link from react-router-dom to navigate to
 
 const Overview = ({ userData, logout, singleUser }: any) => {
-  console.log(userData);
-  console.log(singleUser);
   const [rents, setRents] = useState([]);
   const user = singleUser;
 
