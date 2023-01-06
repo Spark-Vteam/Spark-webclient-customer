@@ -33,7 +33,7 @@ const History = ({ userData, logout, singleUser }: any) => {
       return 'Lund';
     } else if (coordinates.split(',')[0][1] === '6') {
       return 'Karlskrona';
-    } 
+    }
     return 'Stockholm';
   }
 

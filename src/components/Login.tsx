@@ -10,8 +10,8 @@ function Login({ setUserData }: any) {
   const [rerender, setRerender] = useState(false);
   const [, setValue] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [user, setUser] = useState([]);
-  const [token, setToken] = useState('');
+  const [, setUser] = useState([]);
+  const [, setToken] = useState('');
 
   function showModal() {
     setIsModalOpen(true);
@@ -98,7 +98,7 @@ function Login({ setUserData }: any) {
     window.location.assign(
       `https://github.com/login/oauth/authorize?scope=user&client_id=${CLIENT_ID}`,
     );
-    const loginValue = event.target.value
+    const loginValue = event.target.value;
     localStorage.setItem('value', loginValue);
     setValue(event.target.value);
   }

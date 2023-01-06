@@ -1,7 +1,6 @@
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from '../App';
 import { HashRouter } from 'react-router-dom';
-
 
 test('renders welcome page', () => {
   render(
@@ -16,5 +15,3 @@ test('renders welcome page', () => {
   expect(headingElement).toBeInTheDocument();
   expect(loginElement).toBeInTheDocument();
 });
-
-

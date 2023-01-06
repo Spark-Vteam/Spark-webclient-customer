@@ -49,7 +49,7 @@ const Overview = ({ userData, logout, singleUser }: any) => {
           <p>
             Number of trips with Spark: <strong className='big'>{rents.length || 0}</strong>
           </p>
-          {user.PartialPayment === 0 && user.Balance === 0 ? (
+          {user.PartialPayment === null || user.Balance === 0 ? (
             <div className='sub-container'>
               <Link to='/payment' className='payment-link'>
                 {' '}
@@ -65,14 +65,12 @@ const Overview = ({ userData, logout, singleUser }: any) => {
           ) : (
             <p>Everything seems up to date!</p>
           )}
-          {/* </div> */}
-        </div>
-        {/* <img src={Scooter} className='scooter-img' alt='Scooter' /> */}
-        <div id='background'></div>
-        <div id='road'></div>
-        <div id='scooter'>
-          <img src={Scooter} className='scooter-img' alt='Scooter' />
-          <div id='stop'></div>
+          <div id='background'></div>
+          <div id='road'></div>
+          <div id='scooter'>
+            <img src={Scooter} className='scooter-img' alt='Scooter' />
+            <div id='stop'></div>
+          </div>
         </div>
       </div>
     </>

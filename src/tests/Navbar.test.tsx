@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { HashRouter } from 'react-router-dom';
 import NavbarStart from '../components/NavbarStart';
@@ -62,7 +61,7 @@ test('clicking logout button calls logout function', () => {
 });
 
 test('renders logo correctly', () => {
-    const logout = jest.fn();
+  const logout = jest.fn();
   render(<NavbarMin logout={logout} />);
   const logo = screen.getByAltText('logo');
   expect(logo).toBeInTheDocument();

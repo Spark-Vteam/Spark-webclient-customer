@@ -77,14 +77,6 @@ const CreditCardForm = ({ user }: any) => {
           onChange={handleChange}
         />
         <br />
-        {/* <label htmlFor='truncpan'>Truncated card number</label>
-      <input
-        type='text'
-        name='truncpan'
-        value={card.truncpan}
-        onChange={handleChange}
-      />
-      <br /> */}
         <button className='submit-card' type='submit'>
           Add card
         </button>

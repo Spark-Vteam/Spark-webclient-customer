@@ -1,13 +1,11 @@
-import { useState, useEffect, Fragment } from 'react';
+import { useState, useEffect } from 'react';
 import paymentModel from '../models/paymentModels';
 import { Invoice } from '../interfaces/payment';
 import Toast from './Toast';
+import Invoices from './Invoices';
 import CreditCard from './CreditCard';
 import ChoosePayment from './ChoosePayment';
-import paymentModule from '../modules/paymentModule';
-
 import Navbar from './Navbar';
-// importing Link from react-router-dom to navigate to
 
 const Payment = ({ userData, logout, singleUser }: any) => {
   const [invoices, setInvoices] = useState<Array<Invoice>>([]);
@@ -23,11 +21,6 @@ const Payment = ({ userData, logout, singleUser }: any) => {
   useEffect(() => {
     setRerender(!rerender);
   }, [balance]);
-
-  useEffect(() => {
-    // console.log('rerender:', rerender);
-    // console.log('accessToken:', localStorage.getItem('accessToken'));
-  }, [rerender]);
 
   /**
    * fetch users from API
@@ -62,18 +55,6 @@ const Payment = ({ userData, logout, singleUser }: any) => {
     })();
   }, [balance]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  function formatDate(dateString: string): string {
-    if (dateString === null) {
-      return 'Information is missing';
-    } else {
-      const date = new Date(dateString);
-      const year = date.getFullYear();
-      const month = (date.getMonth() + 1).toString().padStart(2, '0');
-      const day = date.getDate().toString().padStart(2, '0');
-      return `${year}-${month}-${day}`;
-    }
-  }
-
   async function handleSubmit(event: { preventDefault: () => void }) {
     event.preventDefault();
 
@@ -88,40 +69,7 @@ const Payment = ({ userData, logout, singleUser }: any) => {
     }
   }
 
-  async function doPayment(event: any) {
-    event.preventDefault();
-
-    const invoiceId = event.target.value;
-
-    try {
-      await paymentModel.payOneInvoice(invoiceId, user.id);
-      setToastMessage('Invoice payed!');
-      setShowToast(true);
-    } catch (error) {
-      console.error(error);
-      setToastMessage('Could not pay invoice, try again.');
-      setShowToast(true);
-    }
-  }
-
-  // Ändra betala med kort
-  async function doPaymentMonthly(invoiceId: any, expires: any) {
-    try {
-      await paymentModel.payOneInvoiceMonthly(invoiceId, expires);
-      setToastMessage(`Invoice payed with card ${truncPan}!`);
-      setShowToast(true);
-    } catch (error) {
-      console.error(error);
-      setToastMessage('Could not pay invoice, try again.');
-      setShowToast(true);
-    }
-  }
-
-  function checkStatusMessage(status: number): string {
-    const message = paymentModule.checkStatus(status);
-    return message;
-  }
-
+  console.log(creditCard);
   return (
     <div className='App'>
       <Navbar userData={userData} logout={logout} />
@@ -153,63 +101,7 @@ const Payment = ({ userData, logout, singleUser }: any) => {
             </div>
           </div>
         </div>
-        <div className='invoices-container'>
-          <h1>Invoices</h1>
-          <table className='pricing-table'>
-            <thead className='pricing-table-head'>
-              <tr className='pricing-table-row'>
-                <th>Amount (SEK)</th>
-                <th>Created</th>
-                <th>Expires</th>
-                <th>Paid</th>
-                <th>Rent id</th>
-                <th>Status</th>
-                <th>Action</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody data-testid='invoice-row' className='pricing-table-body'>
-              {invoices.map((invoice) => (
-                <tr key={invoice.id}>
-                  <td>{invoice.Amount}</td>
-                  <td data-testid='invoice-row'>{formatDate(invoice.Created)}</td>
-                  <td>{formatDate(invoice.Expires)}</td>
-                  <td>{formatDate(invoice.Paid)}</td>
-                  <td>{invoice.Rents_id}</td>
-                  <td>{checkStatusMessage(invoice.Status)}</td>
-                  {user.PartialPayment === 0 ? (
-                    <td>
-                      <button value={invoice.id} onClick={doPayment}>
-                        Pay with balance
-                      </button>
-                    </td>
-                  ) : (
-                    <td>
-                      <button
-                        value={invoice.id}
-                        onClick={(e) => doPaymentMonthly(invoice.id, invoice.Expires)}
-                      >
-                        Pay with balance
-                      </button>
-                    </td>
-                  )}
-                  {(creditCard.length !== 0 && invoice.Status === 40) || invoice.Status === 20 ? (
-                    <td></td>
-                  ) : (
-                    <td>
-                      <button
-                        value={invoice.id}
-                        onClick={(e) => doPaymentMonthly(invoice.id, invoice.Expires)}
-                      >
-                        Pay with credit card ****{truncPan}
-                      </button>
-                    </td>
-                  )}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <Invoices invoices={invoices} user={user} creditCard={creditCard} truncPan={truncPan} />
       </div>
     </div>
   );

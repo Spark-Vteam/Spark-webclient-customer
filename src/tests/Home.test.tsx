@@ -1,7 +1,6 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { HashRouter } from 'react-router-dom';
 import Home from '../components/Home';
-import userModel from '../models/userModels';
 
 test('renders home page', () => {
   render(

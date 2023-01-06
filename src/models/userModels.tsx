@@ -40,8 +40,8 @@ const userModels = {
   },
   setPartialPayment: async function setPartialPayment(id: string, balance: any) {
     const amount = {
-      balance: parseInt(balance)
-    }
+      balance: parseInt(balance),
+    };
     fetch(`http://localhost:4000/v1/user/partial_balance/${id}`, {
       method: 'PUT',
       headers: {

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import userModels from '../models/userModels';
 
-type ModalProps = {
-  isOpen: boolean;
-  showModal: () => void;
-  hideModal: () => void;
-};
+// type ModalProps = {
+//   isOpen: boolean;
+//   showModal: () => void;
+//   hideModal: () => void;
+// };
 
 function Modal({ setUserData, setToken, setUser, isOpen, showModal, hideModal }: any) {
   const [username, setUsername] = useState('');

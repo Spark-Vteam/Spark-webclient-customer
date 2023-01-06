@@ -1,5 +1,4 @@
-import { useState, useEffect, Fragment } from 'react';
-import Navbar from './Navbar';
+import { useState } from 'react';
 import userModel from '../models/userModels';
 import Toast from './Toast';
 
@@ -28,7 +27,9 @@ const ChoosePayment = ({ user }: any) => {
     <>
       <div className='payment-container'>
         {showToast && <Toast message={toastMessage} />}
-        <p>Current payment: <strong>{getMethod()}</strong></p>
+        <p>
+          Current payment: <strong>{getMethod()}</strong>
+        </p>
         <button className='payment-btn' value='0' onClick={single}>
           Pay trip by trip
         </button>
