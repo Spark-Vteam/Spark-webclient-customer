@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { HashRouter } from 'react-router-dom';
 import Payment from '../components/Payment';
 // jest.mock('./models/paymentModels');

@@ -6,8 +6,6 @@ const paymentModule = {
       return 'Invoice is paid';
     } else if (status === 30) {
       return 'Invoice is late';
-    } else if (status === 50) {
-      return 'Parking';
     } else return 'Invoice is cancelled';
   },
 };

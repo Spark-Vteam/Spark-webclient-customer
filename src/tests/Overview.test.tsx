@@ -48,4 +48,3 @@ test('renders payment link and message', () => {
   );
   expect(paymentMessage).toBeInTheDocument();
 });
-

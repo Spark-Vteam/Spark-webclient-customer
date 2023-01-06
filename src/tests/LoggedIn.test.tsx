@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { HashRouter } from 'react-router-dom';
 import LoggedIn from '../components/LoggedIn';
 // jest.mock('./models/paymentModels');
@@ -9,7 +9,7 @@ test('renders Payment component', () => {
   const userData = {};
   const logout = jest.fn();
   const singleUser = [{ id: 1, Balance: 100 }];
-  const { getByText } = render(
+  render(
     <HashRouter>
       <LoggedIn userData={userData} logout={logout} singleUser={singleUser} />
     </HashRouter>,

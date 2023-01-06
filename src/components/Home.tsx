@@ -1,5 +1,5 @@
 import NavbarMin from './NavbarMin';
-import { act } from '@testing-library/react';
+import { User } from '../interfaces/user';
 import { useState, useEffect } from 'react';
 import userModel from '../models/userModels';
 import LoggedIn from './LoggedIn';
@@ -13,8 +13,7 @@ const Home = ({ userData, logout }: any) => {
   const [users, setUsers] = useState([]);
   const [password, setPassword] = useState('');
   const [isActive, setIsActive] = useState(false);
-  const [singleUser, setSingleUser] = useState([]);
-  const [, setOauth] = useState([]);
+  const [singleUser, setSingleUser] = useState<Array<User>>([]);
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
 
@@ -30,16 +29,13 @@ const Home = ({ userData, logout }: any) => {
         password: password,
         oauth: String(userData.id),
       });
-      act(() => {
-        setToastMessage('User created, login to continue.');
-        setShowToast(true);
-      });
+      setToastMessage('User created, login to continue.');
+      setShowToast(true);
       localStorage.removeItem('accessToken');
       logout();
     } catch (error) {
-      console.log(JSON.stringify(error));
       console.error(JSON.stringify(error));
-      // setToastMessage(JSON.stringify(error.message));
+      setToastMessage(JSON.stringify('Could not create user, try again'));
       setShowToast(true);
     }
   }
@@ -59,16 +55,22 @@ const Home = ({ userData, logout }: any) => {
     })();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  /** @type {Array} filter bikes depending on status */
-  users.filter(async (user: any) => {
-    if (user.Oauth === String(userData.id)) {
-      const fetchUser = await userModel.getSingleUser(user.id);
-      localStorage.setItem('id', user.id);
-      setOauth(user.Oauth);
-      setSingleUser(fetchUser);
+  useEffect(() => {
+    if (localStorage.getItem('value') === 'login-username') {
+      setSingleUser(userData);
       setIsActive(true);
+    } else {
+      /** @type {Array} filter users depending on id */
+      users.filter(async (user: any) => {
+        if (user.Oauth === String(userData.id)) {
+          const fetchUser = await userModel.getSingleUser(user.id);
+          localStorage.setItem('id', user.id);
+          setSingleUser(fetchUser[0]);
+          setIsActive(true);
+        }
+      });
     }
-  });
+  }, [userData]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>

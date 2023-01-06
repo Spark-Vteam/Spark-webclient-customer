@@ -6,7 +6,7 @@ import rentModel from '../models/rentModels';
 const History = ({ userData, logout, singleUser }: any) => {
   const [rents, setRents] = useState([]);
 
-  const user = singleUser[0];
+  const user = singleUser;
   /**
    * fetch users from API
    * @returns {Promise<void>}
@@ -33,7 +33,7 @@ const History = ({ userData, logout, singleUser }: any) => {
       return 'Lund';
     } else if (coordinates.split(',')[0][1] === '6') {
       return 'Karlskrona';
-    } 
+    }
     return 'Stockholm';
   }
 
