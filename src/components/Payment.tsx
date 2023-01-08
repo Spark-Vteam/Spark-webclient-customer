@@ -20,7 +20,7 @@ const Payment = ({ userData, logout, singleUser }: any) => {
 
   useEffect(() => {
     setRerender(!rerender);
-  }, [balance]);
+  }, [balance, rerender]);
 
   /**
    * fetch users from API
@@ -69,7 +69,6 @@ const Payment = ({ userData, logout, singleUser }: any) => {
     }
   }
 
-  console.log(creditCard);
   return (
     <div className='App'>
       <Navbar userData={userData} logout={logout} />

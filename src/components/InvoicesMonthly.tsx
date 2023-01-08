@@ -61,6 +61,8 @@ const InvoicesMonthly = ({ invoices, user, creditCard, truncPan }: any) => {
     }
   }
 
+  console.log(creditCard, truncPan);
+
   return (
     <>
       {showToast && <Toast message={toastMessage} />}

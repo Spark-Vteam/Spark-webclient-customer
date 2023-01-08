@@ -38,22 +38,17 @@ const History = ({ userData, logout, singleUser }: any) => {
   }
 
   function timeDifference(timestamp1: string, timestamp2: string) {
-    // Konvertera tidsstämpeln till ett Date-objekt
     const date1 = new Date(timestamp1);
     const date2 = new Date(timestamp2);
 
-    // Konvertera datumen till millisekunder med hjälp av getTime()
     const date1InMilliseconds = date1.getTime();
     const date2InMilliseconds = date2.getTime();
 
-    // Beräkna skillnaden i millisekunder
     const differenceInMilliseconds = Math.abs(date1InMilliseconds - date2InMilliseconds);
 
-    // Konvertera millisekunder till minuter och sekunder
     const minutes = Math.floor(differenceInMilliseconds / 1000 / 60);
     const seconds = Math.floor(differenceInMilliseconds / 1000) % 60;
 
-    // Returnera resultatet som en sträng i formatet "X minuter Y sekunder"
     return `${minutes} minutes and ${seconds} seconds`;
   }
 
@@ -61,24 +56,26 @@ const History = ({ userData, logout, singleUser }: any) => {
   return (
     <>
       <Navbar userData={userData} logout={logout} />
-      <div className='container'>
+      <div className='container' data-testid='container'>
         <h1>History of your trips</h1>
         <div className='App-container'>
           {rents.map((rent: any) => (
-            <Fragment key={rent.id}>
-              <strong>Date: </strong>
-              {getDate(rent.StartTimestamp)}
-              <br />
-              <strong>Price: </strong>
-              {rent.Price} SEK
-              <br />
-              <strong>City: </strong>
-              {getCity(rent.Start)}
-              <br />
-              <strong>Duration: </strong>
-              {timeDifference(rent.DestinationTimestamp, rent.StartTimestamp)}
-              <hr />
-            </Fragment>
+            <div key={rent.id} data-testid='rent'>
+              <Fragment key={rent.id}>
+                <strong>Date: </strong>
+                {getDate(rent.StartTimestamp)}
+                <br />
+                <strong>Price: </strong>
+                {rent.Price} SEK
+                <br />
+                <strong>City: </strong>
+                {getCity(rent.Start)}
+                <br />
+                <strong>Duration: </strong>
+                {timeDifference(rent.DestinationTimestamp, rent.StartTimestamp)}
+                <hr />
+              </Fragment>
+            </div>
           ))}
         </div>
       </div>

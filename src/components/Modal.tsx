@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import userModels from '../models/userModels';
-
-// type ModalProps = {
-//   isOpen: boolean;
-//   showModal: () => void;
-//   hideModal: () => void;
-// };
+import Toast from './Toast';
 
 function Modal({ setUserData, setToken, setUser, isOpen, showModal, hideModal }: any) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -21,17 +18,21 @@ function Modal({ setUserData, setToken, setUser, isOpen, showModal, hideModal }:
       setUserData(user.data.info.user);
       localStorage.setItem('value', 'login-username');
     } catch (error: any) {
-      alert(error.message);
+      console.error(error);
+      setToastMessage('Invalid email or password');
+      setShowToast(true);
     }
   };
 
+  console.log(showModal);
   return (
     <>
+      {showToast && <Toast data-testid='toast' message={toastMessage} />}
       {isOpen && (
-        <div className='modal'>
+        <div className='modal' data-testid='modal'>
           <div className='modal-content'>
             <div className='form-container'>
-              <form className='login-form' onSubmit={handleSubmit}>
+              <form className='login-form' data-testid='login-form' onSubmit={handleSubmit}>
                 <label className='login-label' htmlFor='username'>
                   Email
                 </label>

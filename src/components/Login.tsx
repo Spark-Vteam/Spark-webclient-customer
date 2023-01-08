@@ -31,7 +31,7 @@ function Login({ setUserData }: any) {
         id: localStorage.getItem('id') || '',
       });
     }
-  }, []);
+  }, [setUserData]);
 
   async function getAccessToken(codeParam: string | null) {
     await fetch('http://localhost:4000/v1/auth/getAccessToken?code=' + codeParam, {
@@ -63,7 +63,6 @@ function Login({ setUserData }: any) {
     if (codeParam && localStorage.getItem('accessToken') === null) {
       getAccessToken(codeParam);
     } else {
-      console.log('nej');
       setUserData({
         login: localStorage.getItem('user') || '',
         email: localStorage.getItem('email') || '',
@@ -72,7 +71,7 @@ function Login({ setUserData }: any) {
         id: localStorage.getItem('id') || '',
       });
     }
-  }, []);
+  }, [setUserData]);
 
   async function getUserData() {
     await fetch('http://localhost:4000/v1/auth/getUserData', {

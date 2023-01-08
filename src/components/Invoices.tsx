@@ -57,14 +57,14 @@ const Invoices = ({ invoices, user, creditCard, truncPan }: any) => {
 
   return (
     <>
-      {showToast && <Toast message={toastMessage} />}
-      <div className='invoices-container'>
+      {showToast && <Toast message={toastMessage} data-testid='toast' />}
+      <div className='invoices-container' data-testid='invoices-container'>
         {user.PartialPayment === 0 ? (
           <>
             <h1>Invoices</h1>
-            <table className='pricing-table'>
-              <thead className='pricing-table-head'>
-                <tr className='pricing-table-row'>
+            <table className='pricing-table' data-testid='pricing-table'>
+              <thead className='pricing-table-head' data-testid='pricing-table-head'>
+                <tr className='pricing-table-row' data-testid='pricing-table-row'>
                   <th>Amount (SEK)</th>
                   <th>Created</th>
                   <th>Expires</th>
@@ -76,7 +76,7 @@ const Invoices = ({ invoices, user, creditCard, truncPan }: any) => {
                   <th></th>
                 </tr>
               </thead>
-              <tbody data-testid='invoice-row' className='pricing-table-body'>
+              <tbody data-testid='pricing-table-body' className='pricing-table-body'>
                 {invoices.map((invoice: any) => (
                   <tr key={invoice.id}>
                     <td>{invoice.Amount}</td>
