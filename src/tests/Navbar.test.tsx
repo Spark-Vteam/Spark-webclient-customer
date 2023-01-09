@@ -25,7 +25,6 @@ test('renders correct number of links', () => {
   expect(links).toHaveLength(3);
 });
 
-
 test('clicking logout button calls logout function', () => {
   const logout = jest.fn();
   render(
@@ -49,4 +48,3 @@ test('clicking logout button calls logout function', () => {
   fireEvent.click(logoutButton);
   expect(logout).toHaveBeenCalled();
 });
-
