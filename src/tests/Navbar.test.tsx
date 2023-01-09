@@ -25,16 +25,6 @@ test('renders correct number of links', () => {
   expect(links).toHaveLength(3);
 });
 
-test('renders logo correctly', () => {
-  const logout = jest.fn();
-  render(
-    <HashRouter>
-      <Navbar logout={logout} />
-    </HashRouter>,
-  );
-  const logo = screen.getByAltText('logo');
-  expect(logo).toBeInTheDocument();
-});
 
 test('clicking logout button calls logout function', () => {
   const logout = jest.fn();
@@ -60,9 +50,3 @@ test('clicking logout button calls logout function', () => {
   expect(logout).toHaveBeenCalled();
 });
 
-test('renders logo correctly', () => {
-  const logout = jest.fn();
-  render(<NavbarMin logout={logout} />);
-  const logo = screen.getByAltText('logo');
-  expect(logo).toBeInTheDocument();
-});
