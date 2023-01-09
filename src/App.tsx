@@ -8,6 +8,7 @@ import './components/css/Toast.css';
 import './components/css/Table.css';
 import './components/css/Img.css';
 import './components/css/Modal.css';
+import './components/css/AboutPolicy.css';
 import Cell from './img/cell.png';
 import Spark from './img/Spark-heading.png';
 import Home from './components/Home';

@@ -1,6 +1,8 @@
 import History from './History';
 import Overview from './Overview';
 import Payment from './Payment';
+import About from './About';
+import Policy from './Policy';
 import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import userModel from '../models/userModels';
@@ -50,6 +52,8 @@ const LoggedIn = ({ userData, logout, singleUser }: any) => {
             </div>
           }
         />
+        <Route path={'/about'} element={<About userData={userData} logout={logout} />} />
+        <Route path={'/policy'} element={<Policy userData={userData} logout={logout} />} />
       </Routes>
     </>
   );

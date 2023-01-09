@@ -1,5 +1,5 @@
 .scooter-img {
-  width: 180px;
+  width: 150px;
   top: 60%;
   left: 75%;
   position: absolute;
@@ -46,5 +46,11 @@
 
   to {
     transform: translateX(-2000px);
+  }
+}
+
+@media (max-width: 600px) {
+  .scooter-img {
+    display: none;
   }
 }

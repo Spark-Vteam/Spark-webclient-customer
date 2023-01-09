@@ -84,14 +84,15 @@ const History = ({ userData, logout, singleUser }: any) => {
         <h1>History of your trips</h1>
         {rents.length === 0 ? (
           <div className='App-container'>
-          <p>
-            Seems like you have not yet experienced the convenience and eco-friendliness of traveling with
-            Spark e-bike. Now is the perfect time to give it a try! Simply visit the Spark app on
-            your device and start a new journey. With Spark, you can easily navigate the city and
-            reach your destination without the hassle of traffic or finding a parking spot. Plus,
-            you can feel good about using a mode of transportation that is better for the
-            environment. Do not wait any longer, start your first Spark e-bike trip today!
-          </p>
+            <p>
+              Seems like you have not yet experienced the convenience and eco-friendliness of
+              traveling with Spark e-bike. Now is the perfect time to give it a try! Simply visit
+              the Spark app on your device and start a new journey. With Spark, you can easily
+              navigate the city and reach your destination without the hassle of traffic or finding
+              a parking spot. Plus, you can feel good about using a mode of transportation that is
+              better for the environment. Do not wait any longer, start your first Spark e-bike trip
+              today!
+            </p>
           </div>
         ) : (
           <div className='App-container'>
