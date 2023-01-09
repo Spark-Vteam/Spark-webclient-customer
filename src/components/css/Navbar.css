@@ -48,3 +48,30 @@
 .login-link a {
   color: #fff;
 }
+
+@media only screen and (min-width: 600px) {
+  .show {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 22px;
+  }
+  .topnav .topnav-right {
+    display: flex;
+    flex-direction: column;
+    background-color: #ff774597;
+    border-radius: 10px;
+  }
+
+  .topnav .topnav-right a {
+    display: block;
+    font-size: 14px;
+  }
+
+  .hide {
+    display: none;
+  }
+}

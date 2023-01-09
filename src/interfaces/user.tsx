@@ -9,3 +9,18 @@ export interface User {
   Password: string;
   PhoneNumber: string;
 }
+
+export interface HistoryProps {
+  userData: {
+    id: string;
+  };
+  logout: () => void;
+  singleUser: User;
+}
+
+export interface HomeProps {
+  userData: {
+    id: string;
+  };
+  logout: () => void;
+}

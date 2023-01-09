@@ -50,3 +50,9 @@
 .pricing-table-body .disabled {
   background-color: grey;
 }
+
+@media (max-width: 600px) {
+  .pricing-table td {
+    display: block;
+  }
+}

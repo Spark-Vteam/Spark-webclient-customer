@@ -4,6 +4,9 @@ import paymentModel from '../models/paymentModels';
 import Toast from './Toast';
 
 const CreditCardForm = ({ user }: any) => {
+  /**
+   * The state for the credit card information
+   */
   const [card, setCard] = useState<CreditCard>({
     pan: '',
     expiry: '',
@@ -11,14 +14,28 @@ const CreditCardForm = ({ user }: any) => {
     lastName: '',
     truncpan: '',
   });
+  /**
+   * The state for whether to show the toast message
+   */
   const [showToast, setShowToast] = useState(false);
+  /**
+   * The state for the message to display in the toast
+   */
   const [toastMessage, setToastMessage] = useState('');
 
+  /**
+   * Handles changes to the input fields
+   * @param event The change event
+   */
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setCard({ ...card, [name]: value });
   };
 
+  /**
+   * Handles form submission by adding the credit card to the user
+   * @param event The submit event
+   */
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 

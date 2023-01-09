@@ -75,3 +75,9 @@ input::placeholder {
 .selected-month:hover {
   opacity: 0.7;
 }
+
+@media (max-width: 600px) {
+  .flex-container {
+    flex-direction: column;
+  }
+}

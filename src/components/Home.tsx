@@ -5,6 +5,11 @@ import userModel from '../models/userModels';
 import LoggedIn from './LoggedIn';
 import Toast from './Toast';
 
+/**
+ * Home component that displays a form to create a new user
+ * @param {Object} userData - The user data object
+ * @param {Function} logout - The logout function
+ */
 const Home = ({ userData, logout }: any) => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
@@ -17,6 +22,11 @@ const Home = ({ userData, logout }: any) => {
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
 
+  /**
+   * Handles form submission for creating a new user
+   * @param {Event} event - Form submission event
+   * @returns {Promise<void>}
+   */
   async function handleSubmit(event: any) {
     event.preventDefault();
 
@@ -29,8 +39,8 @@ const Home = ({ userData, logout }: any) => {
         password: password,
         oauth: String(userData.id),
       });
-      setToastMessage('User created, login to continue.');
-      setShowToast(true);
+      alert('User created, login to continue.');
+      // setShowToast(true);
       localStorage.removeItem('accessToken');
       logout();
     } catch (error) {

@@ -93,6 +93,7 @@
   outline: 0;
   text-align: center;
   margin-right: 5px;
+  margin-bottom: 10px;
   /* width: 100%; */
 }
 
@@ -120,4 +121,42 @@
 
 .pay-button:hover {
   opacity: 0.7;
+}
+
+.hb-btn {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  color: #fff;
+}
+
+.hb-btn:hover {
+  opacity: 0.7;
+}
+
+@media (max-width: 600px) {
+  .btn {
+    font-size: 12px;
+  }
+
+  .btn-login {
+    display: inline-block;
+    width: 175px;
+    background: linear-gradient(270deg, #00b38e 28.76%, #01ffcd 100%);
+    border-radius: 20px;
+    border: none;
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 10px;
+    text-decoration: none;
+  }
+
+  .login-btn {
+    font-size: 14px;
+  }
 }

@@ -5,15 +5,32 @@ import InvoicesMonthly from '../components/InvoicesMonthly';
 
 import Toast from './Toast';
 
+/**
+  Invoices component for displaying a list of invoices
+  @param invoices - list of invoices
+  @param user - current user
+  @param creditCard - credit card information
+  @param truncPan - truncated version of credit card number
+*/
 const Invoices = ({ invoices, user, creditCard, truncPan }: any) => {
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
 
+  /**
+    Check the status message of an invoice based on its status code
+    @param status - status code of the invoice
+    @returns string - message corresponding to the status code
+  */
   function checkStatusMessage(status: number): string {
     const message = paymentModule.checkStatus(status);
     return message;
   }
 
+  /**
+    Format a date string
+    @param dateString - string representation of the date
+    @returns string - formatted date string
+    */
   function formatDate(dateString: string): string {
     if (dateString === null) {
       return '-';
@@ -26,6 +43,10 @@ const Invoices = ({ invoices, user, creditCard, truncPan }: any) => {
     }
   }
 
+  /**
+    Make a payment for a single invoice
+    @param event - payment event
+    */
   async function doPayment(event: any) {
     event.preventDefault();
 
@@ -42,7 +63,11 @@ const Invoices = ({ invoices, user, creditCard, truncPan }: any) => {
     }
   }
 
-  // Ändra betala med kort
+  /**
+    Make a monthly payment for a single invoice using a credit card
+    @param invoiceId - id of the invoice to pay
+    @param expires - expiration date of the credit card
+    */
   async function doPaymentMonthly(invoiceId: any, expires: any) {
     try {
       await paymentModel.payOneInvoiceMonthly(invoiceId, expires);
@@ -57,14 +82,14 @@ const Invoices = ({ invoices, user, creditCard, truncPan }: any) => {
 
   return (
     <>
-      {showToast && <Toast message={toastMessage} />}
-      <div className='invoices-container'>
+      {showToast && <Toast message={toastMessage} data-testid='toast' />}
+      <div className='invoices-container' data-testid='invoices-container'>
         {user.PartialPayment === 0 ? (
           <>
             <h1>Invoices</h1>
-            <table className='pricing-table'>
-              <thead className='pricing-table-head'>
-                <tr className='pricing-table-row'>
+            <table className='pricing-table' data-testid='pricing-table'>
+              <thead className='pricing-table-head' data-testid='pricing-table-head'>
+                <tr className='pricing-table-row' data-testid='pricing-table-row'>
                   <th>Amount (SEK)</th>
                   <th>Created</th>
                   <th>Expires</th>
@@ -76,7 +101,7 @@ const Invoices = ({ invoices, user, creditCard, truncPan }: any) => {
                   <th></th>
                 </tr>
               </thead>
-              <tbody data-testid='invoice-row' className='pricing-table-body'>
+              <tbody data-testid='pricing-table-body' className='pricing-table-body'>
                 {invoices.map((invoice: any) => (
                   <tr key={invoice.id}>
                     <td>{invoice.Amount}</td>
@@ -99,7 +124,9 @@ const Invoices = ({ invoices, user, creditCard, truncPan }: any) => {
                     ) : (
                       <td></td>
                     )}
-                    {creditCard.length === 0 || invoice.Status === 40 || invoice.Status === 20 ? (
+                    {Object.keys(creditCard).length === 0 ||
+                    invoice.Status === 40 ||
+                    invoice.Status === 20 ? (
                       <td></td>
                     ) : (
                       <td>

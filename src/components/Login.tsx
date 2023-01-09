@@ -6,21 +6,39 @@ import Modal from './Modal';
 
 const CLIENT_ID = 'b413f1d7c7497d7b8e6a';
 
-function Login({ setUserData }: any) {
+/**
+ * Login component for the application.
+ * @param {Object} props - The props passed to the component.
+ * @param {Function} props.setUserData - A function that sets the user data in the parent component.
+ * @returns {JSX.Element} - The JSX element to render.
+ */
+function Login({ setUserData }: any): JSX.Element {
   const [rerender, setRerender] = useState(false);
   const [, setValue] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [, setUser] = useState([]);
   const [, setToken] = useState('');
 
-  function showModal() {
+  /**
+   * Opens the modal.
+   * @returns {void}
+   */
+  function showModal(): void {
     setIsModalOpen(true);
   }
 
-  function hideModal() {
+  /**
+   * Closes the modal.
+   * @returns {void}
+   */
+  function hideModal(): void {
     setIsModalOpen(false);
   }
 
+  /**
+   * useEffect hook to check if the user has an access token stored in local storage and, if so,
+   * set the user data in the parent component.
+   */
   useEffect(() => {
     if (localStorage.getItem('accessToken')) {
       setUserData({
@@ -31,8 +49,13 @@ function Login({ setUserData }: any) {
         id: localStorage.getItem('id') || '',
       });
     }
-  }, []);
+  }, [setUserData]);
 
+  /**
+   * Makes a GET request to the server to retrieve the access token using the code passed as a parameter.
+   * @param {string|null} codeParam - The code to use to retrieve the access token.
+   * @returns {Promise<void>} - A promise that resolves when the access token
+   */
   async function getAccessToken(codeParam: string | null) {
     await fetch('http://localhost:4000/v1/auth/getAccessToken?code=' + codeParam, {
       method: 'GET',
@@ -63,7 +86,6 @@ function Login({ setUserData }: any) {
     if (codeParam && localStorage.getItem('accessToken') === null) {
       getAccessToken(codeParam);
     } else {
-      console.log('nej');
       setUserData({
         login: localStorage.getItem('user') || '',
         email: localStorage.getItem('email') || '',
@@ -72,7 +94,8 @@ function Login({ setUserData }: any) {
         id: localStorage.getItem('id') || '',
       });
     }
-  }, []);
+    // eslint-disable-next-lineclear
+  }, [setUserData]); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function getUserData() {
     await fetch('http://localhost:4000/v1/auth/getUserData', {
