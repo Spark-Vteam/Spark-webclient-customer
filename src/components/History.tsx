@@ -1,9 +1,14 @@
 import { useState, useEffect, Fragment } from 'react';
 import Navbar from './Navbar';
 import rentModel from '../models/rentModels';
-// importing Link from react-router-dom to navigate to
 
+/**
+ * A component for displaying a user's rental history
+ */
 const History = ({ userData, logout, singleUser }: any) => {
+  /**
+   * The state for the user's rentals
+   */
   const [rents, setRents] = useState([]);
 
   const user = singleUser;
@@ -16,18 +21,31 @@ const History = ({ userData, logout, singleUser }: any) => {
     setRents(users);
   }
 
+  /**
+   * Calls the `fetchRents` function when the component mounts
+   */
   useEffect(() => {
     (async () => {
       await fetchRents();
     })();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  /**
+   * Formats a date string
+   * @param currentDate The date to format
+   * @returns The formatted date string
+   */
   function getDate(currentDate: string) {
     const date = new Date(currentDate);
     const dateMDY = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
     return dateMDY;
   }
 
+  /**
+   * Gets the city for a set of coordinates
+   * @param coordinates The coordinates to get the city for
+   * @returns The city for the coordinates
+   */
   function getCity(coordinates: string) {
     if (coordinates.split(',')[0][1] === '5') {
       return 'Lund';
@@ -37,6 +55,12 @@ const History = ({ userData, logout, singleUser }: any) => {
     return 'Stockholm';
   }
 
+  /**
+   * Calculates the difference in time between two timestamps
+   * @param timestamp1 The first timestamp
+   * @param timestamp2 The second timestamp
+   * @returns the time in minutes and seconds
+   */
   function timeDifference(timestamp1: string, timestamp2: string) {
     const date1 = new Date(timestamp1);
     const date2 = new Date(timestamp2);
@@ -52,7 +76,6 @@ const History = ({ userData, logout, singleUser }: any) => {
     return `${minutes} minutes and ${seconds} seconds`;
   }
 
-  console.log(rents);
   return (
     <>
       <Navbar userData={userData} logout={logout} />

@@ -25,6 +25,11 @@ function App() {
     id: '',
   });
 
+  window.addEventListener('beforeunload', function () {
+    console.log('loggar ut');
+    window.localStorage.clear();
+  });
+
   function logout() {
     // setRerender(!rerender);
 

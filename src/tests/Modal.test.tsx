@@ -3,7 +3,15 @@ import Modal from '../components/Modal';
 
 test('renders the modal', () => {
   const hideModal = jest.fn();
-  const { getByText } = render(<Modal isOpen={true} showModal={() => {''}} hideModal={hideModal} />);
+  const { getByText } = render(
+    <Modal
+      isOpen={true}
+      showModal={() => {
+        ('');
+      }}
+      hideModal={hideModal}
+    />,
+  );
 
   expect(getByText('Log in')).toBeInTheDocument();
   expect(getByText('Email')).toBeInTheDocument();
@@ -12,7 +20,15 @@ test('renders the modal', () => {
 
 test('closes the modal when clicking the close button', () => {
   const hideModal = jest.fn();
-  const { getByText } = render(<Modal isOpen={true} showModal={() => {''}} hideModal={hideModal} />);
+  const { getByText } = render(
+    <Modal
+      isOpen={true}
+      showModal={() => {
+        ('');
+      }}
+      hideModal={hideModal}
+    />,
+  );
 
   fireEvent.click(getByText('×'));
   expect(hideModal).toHaveBeenCalled();

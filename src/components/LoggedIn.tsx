@@ -4,7 +4,6 @@ import Payment from './Payment';
 import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import userModel from '../models/userModels';
-// importing Link from react-router-dom to navigate to
 
 const LoggedIn = ({ userData, logout, singleUser }: any) => {
   const [, setUsers] = useState([]);

@@ -27,7 +27,13 @@ const singleUser = {
 test('should render the component', () => {
   render(
     <HashRouter>
-      <History userData={userData} logout={() => {''}} singleUser={singleUser} />
+      <History
+        userData={userData}
+        logout={() => {
+          ('');
+        }}
+        singleUser={singleUser}
+      />
     </HashRouter>,
   );
   const containerElement = screen.getByTestId('container');
@@ -37,7 +43,13 @@ test('should render the component', () => {
 test('should render the component w. correct text', () => {
   render(
     <HashRouter>
-      <History userData={userData} logout={() => {''}} singleUser={singleUser} />
+      <History
+        userData={userData}
+        logout={() => {
+          ('');
+        }}
+        singleUser={singleUser}
+      />
     </HashRouter>,
   );
   const containerElement = screen.getByTestId('container');

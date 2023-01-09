@@ -24,3 +24,17 @@
   color: #fe4600;
   font-size: 1.2em;
 }
+
+@media (max-width: 600px) {
+  .head-text-sub {
+    font-size: 14px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  span {
+    font-size: 14px;
+  }
+}

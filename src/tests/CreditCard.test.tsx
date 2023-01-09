@@ -1,4 +1,4 @@
-import { render,screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import CreditCard from '../components/CreditCard';
 import { HashRouter } from 'react-router-dom';
 

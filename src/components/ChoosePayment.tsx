@@ -1,21 +1,45 @@
 import { useState } from 'react';
 import userModel from '../models/userModels';
 import Toast from './Toast';
+import { ChoosePaymentProps } from '../interfaces/payment';
 
-const ChoosePayment = ({ user }: any) => {
+/**
+ * A component for choosing a payment method
+ */
+const ChoosePayment = ({ user }: ChoosePaymentProps) => {
+  /**
+   * The state for whether to show the toast message
+   */
   const [showToast, setShowToast] = useState(false);
+  /**
+   * The state for the message to display in the toast
+   */
   const [toastMessage, setToastMessage] = useState('');
-  async function monthly(event: any) {
-    await userModel.setPartialPayment(user.id, event.target.value);
-    setToastMessage('Payment changed!');
-    setShowToast(true);
-  }
-  async function single(event: any) {
-    await userModel.setPartialPayment(user.id, event.target.value);
+
+  /**
+   * Changes the payment method to monthly and displays a toast message
+   * @param event The click event
+   */
+  async function monthly(event: React.MouseEvent<HTMLButtonElement>) {
+    await userModel.setPartialPayment(user.id, event.currentTarget.value);
     setToastMessage('Payment changed!');
     setShowToast(true);
   }
 
+  /**
+   * Changes the payment method to trip by trip and displays a toast message
+   * @param event The click event
+   */
+  async function single(event: React.MouseEvent<HTMLButtonElement>) {
+    await userModel.setPartialPayment(user.id, event.currentTarget.value);
+    setToastMessage('Payment changed!');
+    setShowToast(true);
+  }
+
+  /**
+   * Gets the user's current payment method as a string
+   * @returns 'Monthly' if the user's payment method is monthly, 'Trip by trip' otherwise
+   */
   function getMethod() {
     if (user.PartialPayment === 1) {
       return 'Monthly';

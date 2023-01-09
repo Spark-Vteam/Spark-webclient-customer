@@ -125,3 +125,19 @@ body {
   border-radius: 10px;
   margin-bottom: 30px;
 }
+
+@media (max-width: 600px) {
+  .overview-container,
+  .App-container {
+    width: 80%;
+    height: 100%;
+  }
+
+  .bg-layer {
+    display: none;
+  }
+
+  .heading {
+    margin: 0 auto;
+  }
+}

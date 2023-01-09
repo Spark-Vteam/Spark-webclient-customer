@@ -13,7 +13,14 @@ test('renders home page', () => {
 });
 
 test('renders user form', () => {
-  const { getByPlaceholderText } = render(<Home userData={{ id: 1 }} logout={() => {''}} />);
+  const { getByPlaceholderText } = render(
+    <Home
+      userData={{ id: 1 }}
+      logout={() => {
+        ('');
+      }}
+    />,
+  );
   const emailInput = getByPlaceholderText('Email');
   const passwordInput = getByPlaceholderText('Password');
   const firstNameInput = getByPlaceholderText('First name');
