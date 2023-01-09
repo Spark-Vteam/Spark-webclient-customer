@@ -76,31 +76,45 @@ const History = ({ userData, logout, singleUser }: any) => {
     return `${minutes} minutes and ${seconds} seconds`;
   }
 
+  console.log(rents.length);
   return (
     <>
       <Navbar userData={userData} logout={logout} />
       <div className='container' data-testid='container'>
         <h1>History of your trips</h1>
-        <div className='App-container'>
-          {rents.map((rent: any) => (
-            <div key={rent.id} data-testid='rent'>
-              <Fragment key={rent.id}>
-                <strong>Date: </strong>
-                {getDate(rent.StartTimestamp)}
-                <br />
-                <strong>Price: </strong>
-                {rent.Price} SEK
-                <br />
-                <strong>City: </strong>
-                {getCity(rent.Start)}
-                <br />
-                <strong>Duration: </strong>
-                {timeDifference(rent.DestinationTimestamp, rent.StartTimestamp)}
-                <hr />
-              </Fragment>
-            </div>
-          ))}
-        </div>
+        {rents.length === 0 ? (
+          <div className='App-container'>
+          <p>
+            Seems like you have not yet experienced the convenience and eco-friendliness of traveling with
+            Spark e-bike. Now is the perfect time to give it a try! Simply visit the Spark app on
+            your device and start a new journey. With Spark, you can easily navigate the city and
+            reach your destination without the hassle of traffic or finding a parking spot. Plus,
+            you can feel good about using a mode of transportation that is better for the
+            environment. Do not wait any longer, start your first Spark e-bike trip today!
+          </p>
+          </div>
+        ) : (
+          <div className='App-container'>
+            {rents.map((rent: any) => (
+              <div key={rent.id} data-testid='rent'>
+                <Fragment key={rent.id}>
+                  <strong>Date: </strong>
+                  {getDate(rent.StartTimestamp)}
+                  <br />
+                  <strong>Price: </strong>
+                  {rent.Price} SEK
+                  <br />
+                  <strong>City: </strong>
+                  {getCity(rent.Start)}
+                  <br />
+                  <strong>Duration: </strong>
+                  {timeDifference(rent.DestinationTimestamp, rent.StartTimestamp)}
+                  <hr />
+                </Fragment>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </>
   );
