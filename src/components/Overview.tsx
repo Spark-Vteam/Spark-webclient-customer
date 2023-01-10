@@ -44,39 +44,41 @@ const Overview = ({ userData, logout, singleUser }: any) => {
       <Navbar userData={userData} logout={logout} />
       <div className='overview-container'>
         <div className='greeting-container'>
-          <div className='greeting-container'>
-            <div className='content'>
-              <h1>
-                {message} {user.FirstName}!
-              </h1>
-              {/* <div className='info-container'> */}
-              <p>
-                Number of trips with Spark: <strong className='big'>{rents.length || 0}</strong>
-              </p>
-              {user.PartialPayment === null || user.Balance === 0 ? (
-                <div className='sub-container'>
-                  <Link to='/payment' className='payment-link'>
-                    {' '}
-                    Add payment method
-                  </Link>
-                  <p>
-                    <strong>
-                      Seems like you not have added any Payment method. Click link above to easily
-                      add a credit card or to load money to your account.
-                    </strong>
-                  </p>
-                </div>
-              ) : (
-                <p>Everything seems up to date!</p>
-              )}
-            </div>
-            <div className='content'>
-              {curHr > 12 && curHr < 18 ? (
+          <div className='content'>
+            <h1>
+              {message} {user.FirstName}!
+            </h1>
+            {/* <div className='info-container'> */}
+            <p>
+              Number of trips with Spark: <strong className='big'>{rents.length || 0}</strong>
+            </p>
+            {user.PartialPayment === null || user.Balance === 0 ? (
+              <div className='sub-container'>
+                <Link to='/payment' className='payment-link'>
+                  {' '}
+                  Add payment method
+                </Link>
+                <p>
+                  <strong>
+                    Seems like you not have added a balance or credit card. Click link above to
+                    easily add a credit card or to load money to your account.
+                  </strong>
+                </p>
+              </div>
+            ) : (
+              <p>Everything seems up to date!</p>
+            )}
+          </div>
+          <div className='content'>
+            {curHr > 12 && curHr < 18 ? (
+              <div className='img-container'>
                 <img src={Sun} alt='Scooter' />
-              ) : (
+              </div>
+            ) : (
+              <div className='img-container'>
                 <img src={Sunrise} alt='Scooter' />
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
         <div id='background'></div>
