@@ -24,7 +24,6 @@ function Modal({ setUserData, setToken, setUser, isOpen, showModal, hideModal }:
     }
   };
 
-  console.log(showModal);
   return (
     <>
       {showToast && <Toast data-testid='toast' message={toastMessage} />}
