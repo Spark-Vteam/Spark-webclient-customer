@@ -12,14 +12,15 @@ const History = ({ userData, logout, singleUser }: any) => {
   const [rents, setRents] = useState([]);
 
   const user = singleUser;
-  console.log(singleUser);
-  console.log(user);
+
   /**
    * fetch users from API
    * @returns {Promise<void>}
    */
   async function fetchRents(): Promise<void> {
+    console.log('user', user);
     const users = await rentModel.getRentsByUser(user.id);
+    console.log(users);
     setRents(users);
   }
 

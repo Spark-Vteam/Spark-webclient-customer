@@ -6,7 +6,7 @@ const rentsByUserModels = {
 
     const user = await response.json();
 
-    return user;
+    return user.data;
   },
 };
 
