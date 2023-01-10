@@ -86,16 +86,20 @@ body {
 }
 
 .greeting-container {
-  background-color: #00b38e;
-  padding: 2em;
+  background-color: #00b38f;
   display: flex;
   width: 100%;
   color: #fff;
+  padding: 1em;
 }
 
 .content {
   flex: 1;
   text-align: center;
+}
+
+.img-container {
+  padding: 3em;
 }
 
 .rent-container {
@@ -122,7 +126,8 @@ body {
 
 .sub-container {
   margin: 0 auto;
-  /* width: 30%; */
+  width: 80%;
+  font-size: 90%;
 }
 
 .invoices-container {
@@ -140,6 +145,7 @@ body {
 }
 
 @media (max-width: 600px) {
+
   .overview-container,
   .App-container {
     width: 80%;
