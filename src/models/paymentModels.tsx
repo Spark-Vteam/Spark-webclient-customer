@@ -28,9 +28,10 @@ const paymentModels = {
       });
     return 'success';
   },
-  payOneInvoice: async function payOneInvoice(invoiceId: string, id: string) {
+  payOneInvoice: async function payOneInvoice(invoiceId: string, method: string, id: string) {
     const userId = {
       id: id,
+      method: method,
     };
 
     fetch(`http://localhost:4000/v1/invoice/pay/${invoiceId}`, {
@@ -48,8 +49,13 @@ const paymentModels = {
       });
     return 'success';
   },
-  payOneInvoiceMonthly: async function payOneInvoiceMonthly(invoiceId: string, expires: string) {
+  payOneInvoiceMonthly: async function payOneInvoiceMonthly(
+    invoiceId: string,
+    method: string,
+    expires: string,
+  ) {
     const exp = {
+      method: method,
       expires: expires,
     };
 

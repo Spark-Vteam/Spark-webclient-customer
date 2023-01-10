@@ -53,7 +53,7 @@ const Invoices = ({ invoices, user, creditCard, truncPan }: any) => {
     const invoiceId = event.target.value;
 
     try {
-      await paymentModel.payOneInvoice(invoiceId, user.id);
+      await paymentModel.payOneInvoice(invoiceId, 'balance', user.id);
       setToastMessage('Invoice payed.');
       setShowToast(true);
     } catch (error) {
@@ -70,7 +70,7 @@ const Invoices = ({ invoices, user, creditCard, truncPan }: any) => {
     */
   async function doPaymentMonthly(invoiceId: any, expires: any) {
     try {
-      await paymentModel.payOneInvoiceMonthly(invoiceId, expires);
+      await paymentModel.payOneInvoiceMonthly(invoiceId, 'balance', expires);
       setToastMessage(`Invoice payed with card ${truncPan}.`);
       setShowToast(true);
     } catch (error) {

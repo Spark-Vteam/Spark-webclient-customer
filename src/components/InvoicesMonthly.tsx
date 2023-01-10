@@ -51,7 +51,7 @@ const InvoicesMonthly = ({ invoices, user, creditCard, truncPan }: any) => {
   async function doPaymentMonthly(id: any, expires: any) {
     console.log(id, expires);
     try {
-      await paymentModel.payOneInvoiceMonthly(id, expires);
+      await paymentModel.payOneInvoiceMonthly(id, 'balance', expires);
       setToastMessage('Invoice payed.');
       setShowToast(true);
     } catch (error) {
