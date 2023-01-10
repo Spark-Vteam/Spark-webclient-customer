@@ -14,13 +14,8 @@ const Payment = ({ userData, logout, singleUser }: any) => {
   const [creditCard, setCreditCard] = useState([]);
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
-  const [rerender, setRerender] = useState(false);
 
   const user = singleUser;
-
-  useEffect(() => {
-    setRerender(!rerender);
-  }, [balance, rerender]);
 
   /**
    * fetch users from API

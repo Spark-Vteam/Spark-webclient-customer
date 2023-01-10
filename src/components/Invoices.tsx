@@ -68,10 +68,11 @@ const Invoices = ({ invoices, user, creditCard, truncPan }: any) => {
     @param invoiceId - id of the invoice to pay
     @param expires - expiration date of the credit card
     */
-  async function doPaymentMonthly(invoiceId: any, expires: any) {
+  async function doPaymentCard(event: any) {
+    const invoiceId = event.target.value;
     try {
-      await paymentModel.payOneInvoiceMonthly(invoiceId, 'balance', expires);
-      setToastMessage(`Invoice payed with card ${truncPan}.`);
+      await paymentModel.payOneInvoice(invoiceId, 'card', user.id);
+      setToastMessage('Invoice payed.');
       setShowToast(true);
     } catch (error) {
       console.error(error);
@@ -130,10 +131,7 @@ const Invoices = ({ invoices, user, creditCard, truncPan }: any) => {
                       <td></td>
                     ) : (
                       <td>
-                        <button
-                          value={invoice.id}
-                          onClick={() => doPaymentMonthly(invoice.id, invoice.Expires)}
-                        >
+                        <button value={invoice.id} onClick={doPaymentCard}>
                           Pay with credit card ****{truncPan}
                         </button>
                       </td>
