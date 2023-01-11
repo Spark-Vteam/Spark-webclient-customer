@@ -39,6 +39,8 @@ const Overview = ({ userData, logout, singleUser }: any) => {
     message = 'Good evening';
   }
 
+  console.log(user);
+
   return (
     <>
       <Navbar userData={userData} logout={logout} />

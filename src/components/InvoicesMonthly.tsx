@@ -48,7 +48,6 @@ const InvoicesMonthly = ({ invoices, user, creditCard, truncPan }: any) => {
   }
 
   async function doPaymentMonthly(id: any, expires: any) {
-    console.log(id, expires);
     try {
       await paymentModel.payOneInvoiceMonthly(id, 'balance', expires);
       setToastMessage('Invoice payed.');
@@ -72,11 +71,6 @@ const InvoicesMonthly = ({ invoices, user, creditCard, truncPan }: any) => {
       setShowToast(true);
     }
   }
-
-  // const filteredInvoices = invoicesForMonth.filter(
-  //   (invoice) => invoice.Status === 10 || invoice.status === 30,
-  // );
-  // const totalAmount = filteredInvoices.reduce((total, invoice) => total + invoice.Amount, 0);
 
   return (
     <>
@@ -142,7 +136,7 @@ const InvoicesMonthly = ({ invoices, user, creditCard, truncPan }: any) => {
                       Pay invoices with balance
                     </button>
                     {Object.keys(creditCard).length === 0 ? (
-                      <td></td>
+                      <p></p>
                     ) : (
                       <button
                         className='pay-button'

@@ -64,6 +64,7 @@ const Payment = ({ userData, logout, singleUser }: any) => {
     }
   }
 
+  console.log(invoices);
   return (
     <div className='App'>
       <Navbar userData={userData} logout={logout} />

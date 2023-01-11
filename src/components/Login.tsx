@@ -4,8 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import Modal from './Modal';
 
-const CLIENT_ID = 'b413f1d7c7497d7b8e6a';
-
 /**
  * Login component for the application.
  * @param {Object} props - The props passed to the component.
@@ -119,7 +117,7 @@ function Login({ setUserData }: any): JSX.Element {
 
   function login(event: any) {
     window.location.assign(
-      `https://github.com/login/oauth/authorize?scope=user&client_id=${CLIENT_ID}`,
+      `https://github.com/login/oauth/authorize?scope=user&client_id=${process.env.REACT_APP_CLIENT_ID}`,
     );
     const loginValue = event.target.value;
     localStorage.setItem('value', loginValue);

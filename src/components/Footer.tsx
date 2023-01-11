@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <footer>
-      <div className='left'>© Spark 2022</div>
+      <div className='left'>© Spark 2023</div>
       {localStorage.getItem('accessToken') || localStorage.getItem('token') ? (
         <ul className='right'>
           <li>

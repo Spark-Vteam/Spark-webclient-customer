@@ -70,6 +70,7 @@ input::placeholder {
 
 .selected-month {
   margin-bottom: 5px;
+  color: #ff7745;
 }
 
 .selected-month:hover {
