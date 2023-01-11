@@ -30,7 +30,16 @@ Next, start the development server by running:
 
 This will start the development server at http://localhost:3000.
 
-Next, register for an account through OAuth GitHub or log in through GitHub or a username to tart renting bikes and managing your rentals through the client
+Next, register for an account through OAuth GitHub or log in through GitHub or a username to tart renting bikes and managing your rentals through the client.
+
+### Set up your own OAuth application for GitHub
+1. Go to the GitHub Developer settings by clicking on settings in your profile dropdown and Developer settings.
+2. In the Developer settings, navigate to the OAuth Applications section.
+3. Click on the Register a new application button.
+4. Fill in the form with the details of your application, including the name, homepage URL, and callback URL. The callback URL is the URL where GitHub should redirect the user after they have authorized your application.
+5. Click the Register application button.
+6. GitHub will generate a client ID and client secret for your application. Make sure to keep these secure, as they will be used to authenticate your application when making requests to the GitHub API. Note that you must add your client secret in your .env file on server side.
+7. Your application is now registered, and you can implement the OAuth flow for your users, by redirecting them to the GitHub authorization page, and then handling the authorization callback from GitHub.
 
 ## Deployment
 
@@ -45,15 +54,6 @@ This will create a production-ready build in the build directory. You can serve 
 - JavaScript
 - HTML
 - CSS
-
-## Set up your own OAuth application for GitHub
-1. Go to the GitHub Developer settings by clicking on settings in your profile dropdown and Developer settings.
-2. In the Developer settings, navigate to the OAuth Applications section.
-3. Click on the Register a new application button.
-4. Fill in the form with the details of your application, including the name, homepage URL, and callback URL. The callback URL is the URL where GitHub should redirect the user after they have authorized your application.
-5. Click the Register application button.
-6. GitHub will generate a client ID and client secret for your application. Make sure to keep these secure, as they will be used to authenticate your application when making requests to the GitHub API. Note that you must add your client secret in your .env file on server side.
-7. Your application is now registered, and you can implement the OAuth flow for your users, by redirecting them to the GitHub authorization page, and then handling the authorization callback from GitHub.
 
 ## Docker
 
