@@ -47,7 +47,12 @@ const InvoicesMonthly = ({ invoices, user, creditCard, truncPan }: any) => {
     return date.getMonth();
   }
 
-  async function doPaymentMonthly(id: any, expires: any) {
+  async function doPaymentMonthly(id: any, invoiceMonth: any) {
+    const filteredArray = invoiceMonth.filter(
+      (invoice: any) => invoice.Status === 10 || invoice.Status === 30,
+    );
+    const expires = formatDate(filteredArray[0].Expires);
+    console.log(expires);
     try {
       await paymentModel.payOneInvoiceMonthly(id, 'balance', expires);
       setToastMessage('Invoice payed.');
@@ -59,8 +64,12 @@ const InvoicesMonthly = ({ invoices, user, creditCard, truncPan }: any) => {
     }
   }
 
-  async function doPaymentMonthlyCard(id: any, expires: any) {
-    console.log(id, expires);
+  async function doPaymentMonthlyCard(id: any, invoiceMonth: any) {
+    const filteredArray = invoiceMonth.filter(
+      (invoice: any) => invoice.Status === 10 || invoice.Status === 30,
+    );
+    const expires = formatDate(filteredArray[0].Expires);
+    console.log(expires);
     try {
       await paymentModel.payOneInvoiceMonthly(id, 'card', expires);
       setToastMessage('Invoices payed.');
@@ -77,7 +86,7 @@ const InvoicesMonthly = ({ invoices, user, creditCard, truncPan }: any) => {
       {showToast && <Toast message={toastMessage} />}
       <div className='invoices-container'>
         <>
-          <h1>Invoices</h1>
+          <h1>Invoices to pay</h1>
           <Tabs>
             <TabList>
               {months.map((month, index) => (
@@ -129,9 +138,7 @@ const InvoicesMonthly = ({ invoices, user, creditCard, truncPan }: any) => {
                     </p>
                     <button
                       className='pay-button'
-                      onClick={() =>
-                        doPaymentMonthly(user.id, formatDate(invoicesForMonth[0].Expires))
-                      }
+                      onClick={() => doPaymentMonthly(user.id, invoicesForMonth)}
                     >
                       Pay invoices with balance
                     </button>
@@ -140,9 +147,7 @@ const InvoicesMonthly = ({ invoices, user, creditCard, truncPan }: any) => {
                     ) : (
                       <button
                         className='pay-button'
-                        onClick={() =>
-                          doPaymentMonthlyCard(user.id, formatDate(invoicesForMonth[0].Expires))
-                        }
+                        onClick={() => doPaymentMonthlyCard(user.id, invoicesForMonth)}
                       >
                         Pay with credit card ****{truncPan}
                       </button>
