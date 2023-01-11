@@ -2,7 +2,11 @@ import { CreditCard } from '../interfaces/payment';
 
 const paymentModels = {
   getInvoicesByUser: async function getInvoicesByUser(id: string) {
-    const response = await fetch(`http://localhost:4000/v1/invoice/user/${id}`);
+    const response = await fetch(`http://localhost:4000/v1/invoice/user/${id}`, {
+      headers: {
+        'key': '18c364b7-641e-440e-849a-20a3c67036a1'
+      }
+    });
 
     const invoice = await response.json();
 
@@ -17,6 +21,7 @@ const paymentModels = {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
+        'key': '18c364b7-641e-440e-849a-20a3c67036a1'
       },
       body: JSON.stringify(updatedBalance),
     })
@@ -99,7 +104,11 @@ const paymentModels = {
     return 'success';
   },
   getCreditCards: async function getCreditCards(id: string) {
-    const response = await fetch(`http://localhost:4000/v1/creditcard/${id}`);
+    const response = await fetch(`http://localhost:4000/v1/creditcard/${id}`, {
+      headers: {
+        'key': '18c364b7-641e-440e-849a-20a3c67036a1'
+      }
+    });
 
     const creditCard = await response.json();
 

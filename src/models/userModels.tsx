@@ -1,6 +1,10 @@
 const userModels = {
   getUsers: async function getUsers() {
-    const response = await fetch('http://localhost:4000/v1/user');
+    const response = await fetch('http://localhost:4000/v1/user', {
+      headers: {
+        'key': '18c364b7-641e-440e-849a-20a3c67036a1'
+      }
+    });
 
     const user = await response.json();
 
@@ -11,6 +15,7 @@ const userModels = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'key': '18c364b7-641e-440e-849a-20a3c67036a1'
       },
       body: JSON.stringify(insertedUser),
     })
@@ -27,6 +32,7 @@ const userModels = {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
+        'key': '18c364b7-641e-440e-849a-20a3c67036a1'
       },
       body: JSON.stringify(insertedUser),
     })
@@ -46,6 +52,7 @@ const userModels = {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
+        'key': '18c364b7-641e-440e-849a-20a3c67036a1'
       },
       body: JSON.stringify(amount),
     })
@@ -58,7 +65,11 @@ const userModels = {
     return 'success';
   },
   getSingleUser: async function getSingleUser(id: string) {
-    const response = await fetch(`http://localhost:4000/v1/user/${id}`);
+    const response = await fetch(`http://localhost:4000/v1/user/${id}`, {
+      headers: {
+        'key': '18c364b7-641e-440e-849a-20a3c67036a1'
+      }
+    });
 
     const user = await response.json();
 
@@ -75,6 +86,7 @@ const userModels = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'key': '18c364b7-641e-440e-849a-20a3c67036a1'
         },
         body: JSON.stringify(userInfo),
       });

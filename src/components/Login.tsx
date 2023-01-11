@@ -57,6 +57,9 @@ function Login({ setUserData }: any): JSX.Element {
   async function getAccessToken(codeParam: string | null) {
     await fetch('http://localhost:4000/v1/auth/getAccessToken?code=' + codeParam, {
       method: 'GET',
+      headers: {
+        'key': '18c364b7-641e-440e-849a-20a3c67036a1'
+      }
     })
       .then((response) => {
         return response.json();
