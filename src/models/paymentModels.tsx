@@ -28,9 +28,9 @@ const paymentModels = {
       });
     return 'success';
   },
-  payOneInvoice: async function payOneInvoice(invoiceId: string, method: string, id: string) {
-    const userId = {
-      id: id,
+  payOneInvoice: async function payOneInvoice(invoiceId: string, method: string, userId: string) {
+    const bodyArg = {
+      userId: userId,
       method: method,
     };
 
@@ -39,7 +39,7 @@ const paymentModels = {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(userId),
+      body: JSON.stringify(bodyArg),
     })
       .then((res) => {
         res.json();

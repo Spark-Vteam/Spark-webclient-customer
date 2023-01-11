@@ -66,7 +66,6 @@ const Home = ({ userData, logout }: any) => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    console.log('HEJ');
     if (localStorage.getItem('value') === 'login-username') {
       setSingleUser(userData);
       setIsActive(true);

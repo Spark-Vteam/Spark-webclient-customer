@@ -1,6 +1,7 @@
 import { useState, useEffect, Fragment } from 'react';
 import Navbar from './Navbar';
 import rentModel from '../models/rentModels';
+import Map from '../img/map.png';
 
 /**
  * A component for displaying a user's rental history
@@ -96,6 +97,10 @@ const History = ({ userData, logout, singleUser }: any) => {
               better for the environment. Do not wait any longer, start your first Spark e-bike trip
               today!
             </p>
+            <div>
+              {' '}
+              <img className='img-map' src={Map} alt='Map' />
+            </div>
           </div>
         ) : (
           <div className='App-container'>
@@ -117,6 +122,10 @@ const History = ({ userData, logout, singleUser }: any) => {
                 </Fragment>
               </div>
             ))}
+            <div>
+              {' '}
+              <img className='img-user' src={Map} alt='Map' />
+            </div>
           </div>
         )}
       </div>
