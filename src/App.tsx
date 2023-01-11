@@ -27,14 +27,11 @@ function App() {
   });
 
   window.addEventListener('beforeunload', function () {
-    console.log('loggar ut');
     window.localStorage.clear();
+    window.location.href = 'http://localhost:3000/';
   });
 
   function logout() {
-    // setRerender(!rerender);
-
-    console.log('ska loggas ut');
     localStorage.removeItem('accessToken');
     localStorage.removeItem('token');
     setUserData({
@@ -44,6 +41,7 @@ function App() {
       avatar_url: '',
       id: '',
     });
+    window.location.href = 'http://localhost:3000/';
   }
 
   return (

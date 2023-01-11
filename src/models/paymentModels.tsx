@@ -33,7 +33,6 @@ const paymentModels = {
       userId: userId,
       method: method,
     };
-
     fetch(`http://localhost:4000/v1/invoice/pay/${invoiceId}`, {
       method: 'PUT',
       headers: {
@@ -50,7 +49,7 @@ const paymentModels = {
     return 'success';
   },
   payOneInvoiceMonthly: async function payOneInvoiceMonthly(
-    invoiceId: string,
+    userId: string,
     method: string,
     expires: string,
   ) {
@@ -59,7 +58,10 @@ const paymentModels = {
       expires: expires,
     };
 
-    fetch(`http://localhost:4000/v1/invoice/pay_monthly/${invoiceId}`, {
+    console.log(userId, method, expires);
+    console.log('exp', exp);
+
+    fetch(`http://localhost:4000/v1/invoice/pay_monthly/${userId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
