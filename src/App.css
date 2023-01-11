@@ -24,7 +24,6 @@ body {
   background-color: #fff;
   width: 100%;
   height: 100vh;
-  padding: 0em;
   margin: 0 auto;
 }
 
@@ -37,6 +36,20 @@ body {
   /* background-color: blue; */
   padding: 1em;
   height: 100vh;
+}
+
+.customer-container {
+  height: 100vh;
+  background-color: #00b38f;
+  padding: 4em;
+  color: #fff;
+  text-align: left;
+}
+
+.center-header {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 58px;
 }
 
 .bg-layer {
@@ -144,7 +157,21 @@ body {
   margin-bottom: 30px;
 }
 
+.img-user {
+  width: 75%;
+  margin-left: 100px;
+  margin-top: 40px;
+  transform: rotate(5deg);
+}
+
+.img-map {
+  width: 75%;
+  margin-left: 100px;
+  transform: rotate(5deg);
+}
+
 @media (max-width: 600px) {
+
   .overview-container,
   .App-container {
     width: 80%;

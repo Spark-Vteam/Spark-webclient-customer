@@ -4,6 +4,7 @@ import rentModel from '../models/rentModels';
 import Scooter from '../img/scooterLeft.png';
 import Sunrise from '../img/Sundown.png';
 import Sun from '../img/sun.png';
+import Phone from '../img/phone.png';
 import { Link } from 'react-router-dom';
 
 // importing Link from react-router-dom to navigate to
@@ -88,6 +89,31 @@ const Overview = ({ userData, logout, singleUser }: any) => {
         <div id='scooter'>
           <img src={Scooter} className='scooter-img' alt='Scooter' />
           <div id='stop'></div>
+        </div>
+      </div>
+      <div className='customer-container'>
+        <h1 className='center-header'>Your account</h1>
+        <div className='flex-container margin'>
+          <div className='child'>
+            <p>
+              Firstname: <strong className='big'>{user.FirstName}</strong>
+            </p>
+            <p>
+              Lastname: <strong className='big'>{user.LastName}</strong>
+            </p>
+            <p>
+              Email: <strong className='big'>{user.EmailAdress}</strong>
+            </p>
+            <p>
+              Phone number: <strong className='big'>{user.PhoneNumber}</strong>
+            </p>
+            <span>
+              <i>*Contact us at admin@spark.com to change your info</i>
+            </span>
+          </div>
+          <div className='child'>
+            <img className='img-user' src={Phone} alt='Scooter' />
+          </div>
         </div>
       </div>
     </>
