@@ -38,8 +38,9 @@ Next, register for an account through OAuth GitHub or log in through GitHub or a
 3. Click on the Register a new application button.
 4. Fill in the form with the details of your application, including the name, homepage URL, and callback URL. The callback URL is the URL where GitHub should redirect the user after they have authorized your application.
 5. Click the Register application button.
-6. GitHub will generate a client ID and client secret for your application. Make sure to keep these secure, as they will be used to authenticate your application when making requests to the GitHub API. Note that you must add your client secret in your .env file on server side.
-7. Your application is now registered, and you can implement the OAuth flow for your users, by redirecting them to the GitHub authorization page, and then handling the authorization callback from GitHub.
+6. GitHub will generate a client ID and client secret for your application. Make sure to keep these secure, as they will be used to authenticate your application when making requests to the GitHub API. 
+7. Create one .env file in the root of folder Spark-webclient-customer and add your client ID: REACT_APP_CLIENT_ID=*YOUR_CLIENT_ID*. Note that you must add your client secret in your .env file on server side.
+8. Your application is now registered, and you can implement the OAuth flow for your users, by redirecting them to the GitHub authorization page, and then handling the authorization callback from GitHub.
 
 ## Deployment
 
