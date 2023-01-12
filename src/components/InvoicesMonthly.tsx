@@ -47,20 +47,32 @@ const InvoicesMonthly = ({ invoices, user, creditCard, truncPan }: any) => {
     return date.getMonth();
   }
 
+  function getDateDifferenceInDays(startDate: string, endDate: string) {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const diffTime = end.getTime() - start.getTime();
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  }
+
   async function doPaymentMonthly(id: any, invoiceMonth: any) {
     const filteredArray = invoiceMonth.filter(
       (invoice: any) => invoice.Status === 10 || invoice.Status === 30,
     );
-    const expires = formatDate(filteredArray[0].Expires);
-    console.log(expires);
-    try {
-      await paymentModel.payOneInvoiceMonthly(id, 'balance', expires);
-      setToastMessage('Invoice payed.');
+
+    if (filteredArray.length === 0) {
+      setToastMessage('No invoices to pay');
       setShowToast(true);
-    } catch (error) {
-      console.error(error);
-      setToastMessage('Could not pay invoice, try again.');
-      setShowToast(true);
+    } else {
+      const expires = formatDate(filteredArray[0].Expires);
+      try {
+        await paymentModel.payOneInvoiceMonthly(id, 'balance', expires);
+        setToastMessage('Invoice payed.');
+        setShowToast(true);
+      } catch (error) {
+        console.error(error);
+        setToastMessage('Could not pay invoice, try again.');
+        setShowToast(true);
+      }
     }
   }
 
@@ -68,16 +80,20 @@ const InvoicesMonthly = ({ invoices, user, creditCard, truncPan }: any) => {
     const filteredArray = invoiceMonth.filter(
       (invoice: any) => invoice.Status === 10 || invoice.Status === 30,
     );
-    const expires = formatDate(filteredArray[0].Expires);
-    console.log(expires);
-    try {
-      await paymentModel.payOneInvoiceMonthly(id, 'card', expires);
-      setToastMessage('Invoices payed.');
+    if (filteredArray.length === 0) {
+      setToastMessage('No invoices to pay');
       setShowToast(true);
-    } catch (error) {
-      console.error(error);
-      setToastMessage('Could not pay invoice, try again.');
-      setShowToast(true);
+    } else {
+      const expires = formatDate(filteredArray[0].Expires);
+      try {
+        await paymentModel.payOneInvoiceMonthly(id, 'card', expires);
+        setToastMessage('Invoices payed.');
+        setShowToast(true);
+      } catch (error) {
+        console.error(error);
+        setToastMessage('Could not pay invoice, try again.');
+        setShowToast(true);
+      }
     }
   }
 
@@ -101,7 +117,8 @@ const InvoicesMonthly = ({ invoices, user, creditCard, truncPan }: any) => {
             </TabList>
             {months.map((month, index) => {
               const invoicesForMonth = invoices.filter((invoice: any) => {
-                return getMonthFromDate(invoice.Expires) === index;
+                const daysBetween = getDateDifferenceInDays(invoice.Created, invoice.Expires);
+                return getMonthFromDate(invoice.Expires) === index && daysBetween > 31;
               });
               return (
                 <TabPanel key={index}>
