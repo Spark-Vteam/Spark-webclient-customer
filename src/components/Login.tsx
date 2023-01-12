@@ -105,6 +105,7 @@ function Login({ setUserData }: any): JSX.Element {
       method: 'GET',
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
+        key: key,
       },
     })
       .then((response) => {
