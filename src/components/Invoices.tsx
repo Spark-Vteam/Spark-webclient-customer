@@ -81,6 +81,18 @@ const Invoices = ({ invoices, user, creditCard, truncPan }: any) => {
     }
   }
 
+  function getDateDifferenceInDays(startDate: string, endDate: string) {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const diffTime = end.getTime() - start.getTime();
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  }
+
+  const filteredInvoices = invoices.filter((invoice: any) => {
+    const daysBetween = getDateDifferenceInDays(invoice.Created, invoice.Expires);
+    return daysBetween <= 31;
+  });
+
   return (
     <>
       {showToast && <Toast message={toastMessage} data-testid='toast' />}
@@ -103,7 +115,7 @@ const Invoices = ({ invoices, user, creditCard, truncPan }: any) => {
                 </tr>
               </thead>
               <tbody data-testid='pricing-table-body' className='pricing-table-body'>
-                {invoices.map((invoice: any) => (
+                {filteredInvoices.map((invoice: any) => (
                   <tr key={invoice.id}>
                     <td>{invoice.Amount}</td>
                     <td data-testid='invoice-row'>{formatDate(invoice.Created)}</td>

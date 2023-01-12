@@ -70,6 +70,7 @@ const Payment = ({ userData, logout, singleUser }: any) => {
       {showToast && <Toast message={toastMessage} />}
       <div className='container'>
         <h1>Payment method</h1>
+        <p>Choose payment method before your trip to get correct invoice</p>
         <ChoosePayment user={user} />
         <div className='flex-container'>
           <div className='child'>
