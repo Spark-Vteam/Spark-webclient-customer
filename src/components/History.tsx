@@ -123,8 +123,8 @@ const History = ({ userData, logout, singleUser }: any) => {
               </div>
             ))}
             <div>
-              {' '}
-              <img className='img-user' src={Map} alt='Map' />
+              {/* {' '}
+              <img className='img-user' src={Map} alt='Map' /> */}
             </div>
           </div>
         )}
